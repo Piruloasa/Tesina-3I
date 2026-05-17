@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+
+<html lang="it">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>VOID - Horror Theme</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Crimson+Pro:wght@300;400&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+    <style>
+
+        :root {
+
+            --bg: #080808;
+
+            --card-bg: #0f0f0f;
+
+            --text: #c8c8c8;
+
+            --red: #cc0000;
+
+            --red-glow: rgba(204, 0, 0, 0.5);
+
+            --red-dim: #7a0000;
+
+            --white: #e8e8e8;
+
+            --mono: 'Share Tech Mono', Georgia;
+
+            --display: 'Georgia', Georgia;
+
+            --serif: 'Times New Roman', Georgia, serif;
+
+        }
+
+        /* RESET & BASE */
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+
+            background: var(--bg);
+
+            color: var(--text);
+
+            font-family: var(--serif);
+
+            line-height: 1.8;
+
+            overflow-x: hidden;
+
+        }
+
+        /* HEADER HORROR - ALLINEATO A SINISTRA */
+
+        header {
+
+            min-height: 15vh;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: flex-start;
+
+            justify-content: center;
+
+            background: radial-gradient(ellipse at left, #1a0000 0%, #080808 75%);
+
+            position: relative;
+
+            border-bottom: 1px solid #1a1a1a;
+
+            padding: 20px 2%;
+
+        }
+
+        header h2 {
+
+            font-family: var(--display);
+
+            font-size: clamp(2rem, 6vw, 3rem);
+
+            color: var(--white);
+
+            letter-spacing: 6px;
+
+            text-shadow: 0 0 20px var(--red);
+
+            text-transform: uppercase;
+
+            line-height: 1;
+
+        }
+        header h2 {
+    /* ... i tuoi stili attuali ... */
+    animation: glitch 4s infinite;
+    position: relative;
+}
+
+@keyframes glitch {
+    0% { transform: translate(0); text-shadow: 0 0 20px var(--red); }
+    2% { transform: translate(-2px, 2px); text-shadow: 2px 0 var(--red), -2px 0 #fff; }
+    4% { transform: translate(2px, -2px); }
+    6% { transform: translate(0); }
+    100% { transform: translate(0); }
+}
+
+header .subtitle {
+    animation: fadeInSubtitle 2s ease-out forwards;
+}
+
+@keyframes fadeInSubtitle {
+    from { opacity: 0; letter-spacing: 15px; filter: blur(10px); }
+    to { opacity: 0.8; letter-spacing: 5px; filter: blur(0); }
+}
+
+        header .subtitle {
+
+            font-family: var(--mono);
+
+            color: var(--red);
+
+            letter-spacing: 5px;
+
+            font-size: 0.85rem;
+
+            margin-top: 3px;
+
+            opacity: 0.8;
+
+        }
+
+        /* NUOVO LAYOUT: CONTENITORE PRINCIPALE + SIDEBAR IMMAGINI */
+
+        .main-wrapper {
+
+            display: flex;
+
+            max-width: 2000px;
+
+            margin: 0 auto;
+
+            position: relative;
+
+            gap: 3px;
+
+            padding: 15px 20px;
+
+        }
+
+        /* CONTENITORE PRINCIPALE (SINISTRA) */
+
+        .container {
+
+            flex: 2;
+
+            min-width: 0;
+
+            padding: 0;
+
+        }
+
+        /* SIDEBAR DESTRA PER IMMAGINI */
+
+        .image-sidebar {
+
+            flex: 0.8;
+
+            min-width: 500px;
+
+            position: sticky;
+
+            top: 20px;
+
+            align-self: flex-start;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 30px;
+
+            animation: containerFade 0.5s ease forwards;
+
+        }
+
+        @keyframes containerFade {
+
+            from { 
+
+                opacity: 0.7; 
+
+                transform: translateX(10px);
+
+            }
+
+            to { 
+
+                opacity: 1; 
+
+                transform: translateX(0);
+
+            }
+
+        }
+
+        .sidebar-image {
+
+            width: 100%;
+
+            border: 1px solid #1e1e1e;
+
+            border-radius: 4px;
+
+            overflow: hidden;
+
+            background: #0a0a0a;
+
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        }
+
+        .sidebar-image img {
+
+            width: 100%;
+
+            height: 260px;
+
+            display: block;
+
+            filter: grayscale(30%);
+
+            transition: filter 0.3s ease;
+
+            object-fit: cover;
+
+        }
+
+        .sidebar-image:hover img {
+
+            filter: grayscale(0%);
+
+        }
+
+        .image-caption {
+
+            font-family: var(--mono);
+
+            font-size: 0.7rem;
+
+            color: #666;
+
+            text-align: center;
+
+            padding: 8px;
+
+            letter-spacing: 1px;
+
+            border-top: 1px solid #1a1a1a;
+
+        }
+
+       /* CONTAINER DELL'OCCHIO ANCORATO A DESTRA */
+#floating-eye {
+    position: absolute; /* Si ancora al primo genitore con position: relative (l'header) */
+    right: 4%;          /* Distanza dal bordo destro dell'header */
+    top: 50%;           /* Centratura verticale rispetto all'header */
+    transform: translateY(-50%); /* Correzione per centratura perfetta */
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+#floating-eye svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 0 6px var(--red));
+    transition: filter 0.3s;
+    animation: eyeIdleBlink 6s ease-in-out infinite;
+}
+
+#floating-eye:hover svg {
+    filter: drop-shadow(0 0 14px var(--red)) drop-shadow(0 0 28px var(--red));
+}
+
+/* RESTO DEL TUO DESIGN (Navigazione e Testi) */
+.selector-nav {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 0.5px;
+    flex-wrap: wrap;
+}
+
+/* Selettore dei capitoli: appaiono uno dopo l'altro */
+.selector-item {
+    font-family: var(--display);
+    font-size: 1.5rem;
+    color: #444;
+    cursor: pointer;
+    transition: 0.3s;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    
+    /* Animazione iniziale */
+    opacity: 0; 
+    animation: fadeIn 0.5s ease forwards;
+}
+
+/* Ritardi per i singoli item della nav (effetto cascata) */
+.selector-nav .selector-item:nth-child(1) { animation-delay: 0.2s; }
+.selector-nav .selector-item:nth-child(2) { animation-delay: 0.4s; }
+.selector-nav .selector-item:nth-child(3) { animation-delay: 0.6s; }
+
+/* Titolo Dinamico: animazione ogni volta che cambia */
+#dynamic-title {
+    font-family: var(--display);
+    font-size: 1.4rem;
+    color: var(--white);
+    margin-bottom: 15px;
+    letter-spacing: 3px;
+    border-bottom: 1px solid #1e1e1e;
+    padding-bottom: 10px;
+    text-transform: uppercase;
+    
+    /* Animazione */
+    opacity: 0;
+    animation: fadeIn 0.8s ease forwards;
+    animation-delay: 0.8s; /* Appare dopo i selettori */
+}
+.selector-item:hover, .selector-item.active {
+    color: var(--red);
+    text-shadow: 0 0 10px var(--red-glow);
+}
+
+section {
+    padding: 20px;
+    margin-bottom: 10px;
+    border-radius: 0 8px 8px 0;
+}
+
+h3 {
+    font-family: var(--display);
+    font-size: 1.4rem;
+    color: var(--white);
+    margin-bottom: 15px;
+    letter-spacing: 3px;
+    border-bottom: 1px solid #1e1e1e;
+    padding-bottom: 10px;
+    text-transform: uppercase;
+}
+
+p {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    color: var(--text);
+    display: none;
+}
+
+p.active {
+    display: block;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+    /* DESIGN FRECCIA VERSO IL BASSO */
+#header-arrow {
+    position: absolute;
+    right: 70px; 
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    transition: all 0.3s ease;
+}
+
+#header-arrow svg {
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: var(--red);
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    filter: drop-shadow(0 0 5px var(--red-glow));
+    /* Animazione cambiata per il movimento verticale */
+    animation: arrowBounce 2s infinite ease-in-out;
+}
+
+#header-arrow:hover svg {
+    filter: drop-shadow(0 0 12px var(--red)) drop-shadow(0 0 20px var(--red));
+    stroke: var(--white);
+}
+
+/* Nuova animazione: Rimbalzo verso il basso */
+@keyframes arrowBounce {
+    0%, 100% { transform: translateY(0); opacity: 0.6; }
+    50% { transform: translateY(10px); opacity: 1; }
+}
+
+/* Animazione di movimento inquieto */
+@keyframes arrowPulse {
+    0%, 100% { transform: translateX(0); opacity: 0.6; }
+    50% { transform: translateX(10px); opacity: 1; }
+    55% { transform: translateX(8px) skewX(-10deg); } /* Piccolo glitch */
+}
+
+/* DESIGN FRECCIA VERSO L'ALTO */
+#header-arrow-up {
+    position: absolute;
+    right: 120px; /* Posizionata a sinistra della freccia down (70px + 50px di scarto) */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    transition: all 0.3s ease;
+}
+
+#header-arrow-up svg {
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: var(--red);
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    filter: drop-shadow(0 0 5px var(--red-glow));
+    animation: arrowBounceUp 2s infinite ease-in-out;
+}
+
+#header-arrow-up:hover svg {
+    filter: drop-shadow(0 0 12px var(--red)) drop-shadow(0 0 20px var(--red));
+    stroke: var(--white);
+}
+
+/* Animazione: Rimbalzo verso l'alto */
+@keyframes arrowBounceUp {
+    0%, 100% { transform: translateY(0); opacity: 0.6; }
+    50% { transform: translateY(-10px); opacity: 1; }
+}
+
+        /* NAVIGAZIONE TITOLI SELEZIONABILI */
+        
+        .selector-nav {
+
+            display: flex;
+
+            gap: 20px;
+
+            margin-bottom: 0.5px;
+
+            flex-wrap: wrap;
+
+        }
+
+        .selector-item {
+
+            font-family: var(--display);
+
+            font-size: 1.5rem;
+
+            color: #444;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+
+        }
+
+        .selector-item:hover, .selector-item.active {
+
+            color: var(--red);
+
+            text-shadow: 0 0 10px var(--red-glow);
+
+        }
+
+        /* CARD/SEZIONI */
+
+        section {
+
+            padding: 20px;
+
+            margin-bottom: 10px;
+
+            border-radius: 0 8px 8px 0;
+
+        }
+
+        h3 {
+
+            font-family: var(--display);
+
+            font-size: 1.4rem;
+
+            color: var(--white);
+
+            margin-bottom: 15px;
+
+            letter-spacing: 3px;
+
+            border-bottom: 1px solid #1e1e1e;
+
+            padding-bottom: 10px;
+
+            text-transform: uppercase;
+
+        }
+
+        p {
+
+            margin-bottom: 10px;
+
+            font-size: 1.2rem;
+
+            color: var(--text);
+
+            display: none;
+
+        }
+
+        p.active {
+
+            display: block;
+
+            animation: fadeIn 0.5s ease forwards;
+
+        }
+
+        @keyframes fadeIn {
+
+            from { opacity: 0; transform: translateY(5px); }
+
+            to { opacity: 1; transform: translateY(0); }
+
+        }
+
+        /* FOOTER */
+
+        footer {
+
+            padding: 20px 2%;
+
+            text-align: left;
+
+            font-family: var(--mono);
+
+            font-size: 0.65rem;
+
+            color: #333;
+
+            letter-spacing: 3px;
+
+            border-top: 0.2px solid #111;
+
+        }
+
+        @media (max-width: 768px) {
+
+            header { padding-left: 2%; }
+
+            .main-wrapper {
+
+                flex-direction: column;
+
+                padding: 15px 2%;
+
+            }
+
+            .image-sidebar {
+
+                flex-direction: row;
+
+                flex-wrap: wrap;
+
+                position: static;
+
+                top: auto;
+
+                min-width: auto;
+
+            }
+
+            .sidebar-image {
+
+                flex: 1;
+
+                min-width: 150px;
+
+            }
+
+            .sidebar-image img {
+
+                height: 180px;
+
+            }
+
+        }
+    .header-link {
+    text-decoration: none;
+    display: inline-block;
+    width: 100%;
+}
+
+.header-link h2, .header-link .subtitle {
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.header-link h2:hover, .header-link .subtitle:hover {
+    opacity: 0.8;
+}
+
+.subtitle-link {
+    text-decoration: none;
+    display: inline-block;
+    width: 100%;
+}
+
+.subtitle-link .subtitle {
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.subtitle-link .subtitle:hover {
+    opacity: 0.8;
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<header>
+
+        <h2>I primi tre punti del buon dittatore</h2>
+        <div class="subtitle">la fissazione per l'omologazione</div>
+
+
+       <!-- ========== FLOATING EYE HOME BUTTON ========== -->
+<div id="floating-eye" title="Torna all'inizio">
+    <svg viewBox="0 30 100 1">
+        <a href="home.html">
+        <path d="M5 25 Q30 2 50 2 Q70 2 95 25 Q70 48 50 48 Q30 48 5 25 Z" fill="#080808" stroke="#5a0000" stroke-width="2.5"/>
+        <!-- Iride -->
+        <circle cx="50" cy="25" r="13" fill="#1a0000" stroke="#cc0000" stroke-width="1.5"/>
+        <!-- Pupilla -->
+        <circle cx="50" cy="25" r="7" fill="#cc0000"/>
+        <!-- Riflesso -->
+        <circle cx="55" cy="20" r="2.5" fill="rgba(255,255,255,0.15)"/>
+        <!-- Vene sottili -->
+        <line x1="15" y1="22" x2="35" y2="24" stroke="#3a0000" stroke-width="0.8" opacity="0.6"/>
+        <line x1="65" y1="24" x2="85" y2="21" stroke="#3a0000" stroke-width="0.8" opacity="0.6"/>
+       </a>
+    </svg>
+
+    <div id="header-arrow" title="Scorri verso il basso">
+    <svg viewBox="0 0 24 24">
+        <a href="C:\Users\Andrea Pace\OneDrive\Desktop\tesi8\2\2.htm">
+        <polyline points="6 9 12 15 18 9"></polyline>
+       <line x1="12" y1="3" x2="12" y2="10" opacity="0.5" stroke-width="2"></line>
+    </a>
+    </svg>
+    </div>
+    <div id="header-arrow-up" title="Torna su">
+    <svg viewBox="0 0 24 24">
+        <a href="">
+        <polyline points="18 15 12 9 6 15"></polyline>
+        <line x1="12" y1="21" x2="12" y2="14" opacity="0.5" stroke-width="2"></line>
+    </svg>
+</a>
+</div>
+</div>
+
+</div>
+
+</header>
+
+
+
+    <div class="main-wrapper">
+
+        <div class="container">
+
+            <section id="content-section">
+
+                <div class="selector-nav">
+
+                    <div class="selector-item active" onclick="showText(1)">Capitolo I</div>
+
+                    <div class="selector-item" onclick="showText(2)">Capitolo II</div>
+
+                    <div class="selector-item" onclick="showText(3)">Capitolo III</div>
+
+                </div>
+
+                <h3 id="dynamic-title">- La stabilità attraverso l'assimetria:</h3>
+
+                <p id="text-1" class="active">
+Le vicende moderne legate alla gestione delle informazioni e casi emblematici come quello di Julian Assange, fondatore di WikiLeaks, sito che rese pubblici vari file criptati delle intelligence rivelando operazioni per il mantenimento del potere omesse, rimasto confinato per anni in uno spazio ristretto sotto la costante minaccia di arresto, evidenziano una dinamica di potere inquietante. Questi eventi suggeriscono l'esistenza di una società divisa tra una "popolazione di serie A" (chi detiene il potere di sorvegliare e gestire il segreto di Stato) e una "popolazione di serie B" (i cittadini comuni, la cui sfera privata diventa trasparente per le istituzioni).
+
+Questa ossessione per il monitoraggio non sembra dettata solo da necessità tattiche, ma da una sorta di paranoia istituzionale. Il desiderio di sapere tutto di tutti nasce dalla volontà di eliminare l'imprevisto e mantenere una stabilità assoluta attraverso il controllo totale. In questo scenario, la sicurezza smette di essere un servizio al cittadino e diventa un pretesto per esercitare un'autorità indiscussa, dove la libertà individuale viene vista come un rischio per l'ordine costituito. Questa assimetria si ritrova all'epoca contemporanea con esempi come i file di epstein con paginate intere omesse e censurate per nascondere probabilmetne varie inquietanti pratiche fatte, possibili accordi di potere approfonfiti come il coordinamento di epstein con Bannon fra lui e i nazionalisti anti EU in europa, e per il mantenimento di certe elite colpevoli di essere entrate nel mondo perverso dell'imprenditore.
+<br> <br>
+
+1° George Orwell: The destruction of culture as a tool of power<br>
+To understand the roots of this system, it is essential to recall the figure of George Orwell (pseudonym of Eric Arthur Blair, 1903-1950). A British writer and journalist, Orwell was a sharp observer of totalitarianism. After his experience in the Spanish Civil War, he developed a profound rejection of every form of authoritarianism, masterfully expressed in the novel 1984. Here, he imagined a future dominated by "Big Brother," an all-seeing entity that manipulates even the language and memory of its citizens.
+
+Orwell highlighted how the maintenance of a dictatorship inevitably passes through the destruction of culture. To dominate consciences, it is not enough to control the present; one must erase the past that does not conform to the regime's ideology. This phenomenon manifested concretely in the totalitarian regimes of the twentieth century:
+<br><br>
+- Book burnings: During Nazism, the physical destruction of literary works served to eliminate any critical or "non-conforming" thought.
+<br> <br>
+- Fascist homogenization: In Italy, the regime sought to stifle cultural diversity and local traditions in favor of a forced mythologizing of "Romanism," understood as the only allowed model of civilization.
+<br><br>
+Destroying culture and books means stripping people of the words to think and the tools to understand reality. While in the past this occurred through fire, today the risk of "dystopia" shifts toward constant monitoring: a power that does not need to burn culture because it can simply submerge it or surveil anyone who accesses it, transforming every citizen into a predictable and, therefore, controllable subject.
+
+However, in my view, over time this practice was perfected more and more, modifying or maintaining certain points while evolving them to the contemporary context.
+                </p>
+                <p id="text-2">
+Il passaggio verso un sistema autoritario non avviene quasi mai per una superiorità militare schiacciante, ma per il cinico opportunismo delle élite. La dittatura riempie lo spazio lasciato da una classe dirigente che, per calcolo o viltà, rinuncia a esercitare il proprio ruolo di garante.
+<br> <br>
+L’ascesa di Benito Mussolini ne è l’esempio più lampante. Lo Stato liberale non fu abbattuto da una forza invincibile: le camicie nere, sebbene violente, erano tecnicamente insignificanti rispetto al Regio Esercito. Sarebbe bastato proclamare lo stato di emergenza per sciogliere le squadracce e arrestare Mussolini, stroncando il fascismo sul nascere. Tuttavia, la classe dirigente scelse la via della "transizione" anziché quella della fermezza.
+<br> <br>
+I capitalisti del Nord e i latifondisti del Sud videro in Mussolini il "rottweiler dello Stato": un cane da guardia feroce da sguinzagliare contro i lavoratori in rivolta durante il Biennio Rosso. L’obiettivo era chiaro: usare la violenza fascista per ristabilire l'ordine e proteggere i privilegi economici, per poi "istituzionalizzare" il movimento una volta esaurito il suo compito sporco.
+<br> <br>
+Ma il controllo sfuggì di mano. Il delitto Matteotti rappresentò il punto di rottura: il Paese fu scosso da un brivido di orrore, ma l'opposizione rimase paralizzata. Il discorso del 3 gennaio 1925 fu il colpo di grazia: Mussolini sfidò un’aula "cagata addosso", immobile per paura e complicità, assumendosi la responsabilità storica della violenza e instaurando, di fatto, il potere assoluto tra i silenzi di chi sperava ancora di trarne vantaggio.
+<br> <br>
+La storia avrebbe potuto prendere un'altra direzione. Gli Arditi del Popolo dimostrarono a Parma, nell'agosto del 1922, che il fascismo era militarmente battibile: poche centinaia di uomini misero in fuga 10.000 camicie nere grazie a tattiche di guerriglia e supporto popolare. Ma questa difesa fallì su scala nazionale perché i partiti di sinistra si frammentarono: i socialisti per terrore del militarismo e i comunisti per una rigida purezza ideologica che impedì un fronte unito.
+<br> <br>
+Oggi, questo schema di scambio di favori tra potere politico e interessi economici si ripete in forme moderne, come nel regime di Orbán, dove la stabilità del dittatore è garantita da una rete di oligarchi che scambiano la loro obbedienza con ricchezza e privilegi. Il regime non cade finché conviene a chi detiene il capitale.
+  </p>
+
+
+
+                <p id="text-3">
+        Uno degli aspetti più fondamentali del potere moderno il controllo del condizionamento psicologico della massa. Se il progetto MK-Ultra fallì nel piegare la mente con la violenza tramite droghe, elettroshock e torture psicologiche verso soggetti in prigrione e nei manicomi. La storia ha confermato che la vera forza risiede nella manipolazione della percezione, mettendo un limite di pensiero dove tutto ciò che va fuori è disumano. Questo meccanismo di sottomissione volontaria, tipico delle sette come quelle di Charles Manson o dei "Rintanati di Penza", trova oggi una nuova declinazione nella politica. Il potere non si limita più alla censura antiquata, ma occupa ogni spazio informativo per generare una polarizzazione estrema, spingendo le masse verso un consenso acritico o un nichilismo paralizzante.
+ <br> <br>
+Joseph Goebbels comprese per primo il potenziale bellico dei media, definendo la radio lo strumento supremo per annullare la distanza tra Stato e individuo. Questa strategia di saturazione si è evoluta nel controllo delle reti digitali e televisive, visibile nei sistemi mediatici di Berlusconi e Orbán. Come evidenziato da giornalisti come Marco Travaglio, in tali sistemi la verità sulle controversie sistemiche dalla corruzione ai legami mafiosi, fatica a emergere non per assenza di prove, ma perché l'ingranaggio mediatico non può permettersi di svelare se stesso senza crollare.
+<br> <br>
+È però necessario distinguere: il populismo nasce come istanza legittima di vicinanza al popolo contro élite tecnocratiche. Tuttavia, i "falsi" populismi sfruttano questo terreno per accentrare il potere attraverso uno storytelling incessante e spettacolarizzato che impedisce la riflessione critica. La figura del leader viene mitizzata, come accadde con Hitler: presentato da Goebbels come metà plebeo (vicino al popolo) e metà dio (dotato di intuito sovrumano). Bertrand Russell ammoniva in merito: "Chi non nutre dubbi o è un idiota o è un pericoloso fanatico".
+<br> <br>
+Queste tecniche sono riassumibili negli 11 principi della buona propagandasintetizzati dal sociologo Leonard Doob nel 1950, analizzando il metodo Goebbels:
+<br> <br>
+1. La costruzione del nemico (Semplificazione e Trasposizione)
+La realtà viene ridotta a uno scontro elementare contro un bersaglio unico: i "comunisti" per Berlusconi e Hitler, o i "capitalisti" per Stalin. Si opera una "trasfusione" di pregiudizi esistenti (come l'antisemitismo) volgarizzando il messaggio per renderlo digeribile ai livelli culturali più bassi. La trasposizione trasforma eventi isolati in minacce sistemiche: l'incendio del Reichstag fu usato dai nazisti per giustificare la repressione, così come oggi la propaganda della "reimmigrazione" usa singoli reati per alimentare la narrazione di un'invasione imminente, ignorando deliberatamente le complessità sociologiche.
+<br> <br>
+2. Ripetizione e saturazione (Orchestrazione e Rinnovamento)
+Una menzogna ripetuta ossessivamente diventa verità percepita. Hitler utilizzò la Volksempfänger (la radio del popolo) per saturare lo spazio domestico. Il sistema deve rinnovarsi costantemente: prima che una notizia falsa venga smentita, ne viene lanciata una più allarmante per spostare l'attenzione, tecnica applicata da Orbán durante le elezioni per nascondere la corruzione interna. La persuasione più efficace è però quella invisibile, nascosta nei libri di scuola, nel cinema o nell'arte (come la mostra sull’"Arte Degenerata" del 1937). Persino l'architettura colossale serviva a far sentire l'individuo un'atomo insignificante dinanzi alla maestosità dello Stato.
+<br> <br>
+3. Gestione delle masse (Unanimità e Silenziamento)
+Gustave Le Bon teorizzò che le masse non cercano la verità, ma illusioni. Attraverso adunate oceaniche e scenografie monumentali, l'identità del singolo viene sciolta nel "branco". Il regime si appropria di simboli positivi (come la giovinezza nei roghi dei libri orchestrati dagli studenti) e controlla l'accesso alle professioni: nella Germania nazista, solo i giornalisti allineati potevano operare, trasformando ogni fallimento in un sacrificio necessario (come il discorso sulla "Guerra Totale" dopo il disastro dell'Operazione Barbarossa). Infine, si utilizza l'individualizzazione della violenza: colpire singoli oppositori per intimidire l'intera collettività, come dimostrato dall'omicidio Matteotti che paralizzò l'opposizione per terrore.
+<br> <br>
+Nessuna democrazia è immune. Il Canada contemporaneo, sotto una gestione tecnocratica percepita come distante, vive tensioni sociali che preparano il terreno a figure simili a Trump, capaci di abbattere il muro tra istituzioni e cittadini con una comunicazione emotiva. La storia insegna che l'equilibrio è fragile: la Germania, culla del welfare di Bismarck e del pensiero di Marx, fu rimodellata in pochi anni. Se il benessere viene meno e la politica si riduce a spettacolo, la propaganda diventa l'unica bussola, trasformando i cittadini in sudditi ideologici.
+                </p>
+
+            </section>
+
+        </div>
+
+
+
+        <!-- SIDEBAR CON IMMAGINI CHE CAMBIANO IN BASE AL TESTO -->
+
+        <div class="image-sidebar" id="image-sidebar">
+
+            <div class="sidebar-image">
+
+                <img id="img-1-src" src="https://wallpapers.com/images/hd/loading-640-x-1066-background-fbz6b4p4t5hjigif.jpg" alt="NSA Surveillance">
+
+                <div class="image-caption" id="caption-1">PRISM • Sorveglianza Globale</div>
+
+            </div>
+
+            <div class="sidebar-image">
+
+                <img id="img-2-src" src="https://wallpapers.com/images/hd/loading-640-x-1066-background-fbz6b4p4t5hjigif.jpg_by_the_Independents_of_the_Westminster_Assembly_of_Divines%2C_1644.jpg/500px-Assertion_of_Liberty_of_Conscience_by_the_Independents_of_the_Westminster_Assembly_of_Divines%2C_1644.jpg" alt="Edward Snowden">
+
+                <div class="image-caption" id="caption-2">Five Eyes • Alleanza Intelligence</div>
+
+            </div>
+
+            <div class="sidebar-image">
+
+                <img id="img-3-src" src="https://wallpapers.com/images/hd/loading-640-x-1066-background-fbz6b4p4t5hjigif.jpg" alt="GDPR Europe">
+
+                <div class="image-caption" id="caption-3">Patriot Act • 11 Settembre 2001</div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <footer>
+
+        © 2026 - ACCESSO RISERVATO - PROTOCOLLO V.O.I.D.
+
+    </footer>
+
+    <script>
+
+        // Configurazione immagini per ogni capitolo
+        const imagesConfig = {
+            1: {
+                images: [
+                    {
+                        src: "https://www.pt39.it/wp-content/uploads/1984-Orwell-Big-Brother.jpg",
+                    },
+                    {
+                        src: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Assertion_of_Liberty_of_Conscience_by_the_Independents_of_the_Westminster_Assembly_of_Divines%2C_1644.jpg/500px-Assertion_of_Liberty_of_Conscience_by_the_Independents_of_the_Westminster_Assembly_of_Divines%2C_1644.jpg",
+                    },
+                    {
+                        src: "https://www.aljazeera.com/wp-content/uploads/2026/02/epa_699ed56c1b28-1772017004.jpg?resize=770%2C513&quality=80",
+                    }
+                ]
+            },
+            2: {
+                images: [
+                    {
+                        src: "https://www.settimananews.it/wp-content/uploads/2022/10/marcia-roma-1.png",
+
+                    },
+                    {
+                        src: "https://www.repstatic.it/content/localirep/img/rep-parma/2019/01/02/073232245-232d4d26-a245-4701-a70a-39c64412ff2e.jpg",
+                    },
+                    {
+                        src: "https://www.ilpost.it/wp-content/uploads/2025/01/03/680x481/1735893937-M1.jpg",
+                                        }
+                ]
+            },
+            3: {
+                images: [
+                    {
+                        src: "https://i0.wp.com/gaetanolopresti.blog/wp-content/uploads/2014/12/1-joseph-goebbels.jpg?fit=693,390&ssl=1&w=640",
+                    },
+                    {
+                        src: "https://upload.wikimedia.org/wikipedia/commons/5/54/Bundesarchiv_Bild_183-1982-1130-502,_N%C3%BCrnberg,_Reichsparteitag,_Lichtdom.jpg",
+                    },
+                    {
+                        src: "https://dimages2.corriereobjects.it/files/og_thumbnail/uploads/2026/04/15/69dfa5d171107.jpeg",
+                    }
+                ]
+            }
+        };
+
+        function updateImagesForChapter(chapterId) {
+            const config = imagesConfig[chapterId];
+            if (!config) return;
+
+            // Aggiungi animazione al container intero
+            const sidebar = document.getElementById('image-sidebar');
+            sidebar.style.animation = 'none';
+            sidebar.offsetHeight; // Forza il reflow
+            sidebar.style.animation = 'containerFade 0.5s ease forwards';
+
+            // Aggiorna ogni immagine e didascalia
+            for (let i = 1; i <= 3; i++) {
+                const imgElement = document.getElementById(`img-${i}-src`);
+                const captionElement = document.getElementById(`caption-${i}`);
+                
+                if (imgElement && captionElement && config.images[i-1]) {
+                    imgElement.src = config.images[i-1].src;
+                    captionElement.textContent = config.images[i-1].caption;
+                }
+            }
+        }
+
+        function showText(id) {
+            // Rimuovi classe active da tutti i titoli e testi
+            document.querySelectorAll('.selector-item').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.container p').forEach(el => el.classList.remove('active'));
+            
+            // Aggiungi active a quello cliccato
+            event.target.classList.add('active');
+            document.getElementById('text-' + id).classList.add('active');
+            
+            // Cambia il titolo dell'H3 in base alla scelta
+            const titles = ["La stabilità attraverso l'assimetria", "L'omertà del vecchio potere", "Il controllo totale della percezione"];
+            document.getElementById('dynamic-title').innerText = titles[id-1];
+            
+            // Cambia le immagini in base al capitolo selezionato
+            updateImagesForChapter(id);
+        }
+
+        // Barra di progresso scroll (opzionale)
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            if(document.getElementById("scroll-progress")) {
+                document.getElementById("scroll-progress").style.width = scrolled + "%";
+            }
+        };
+
+        // Inizializza le immagini per il capitolo I all'avvio
+        updateImagesForChapter(1);
+    </script>
+
+</body>
+
+</html>

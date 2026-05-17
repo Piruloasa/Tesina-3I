@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+
+<html lang="it">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>VOID - Horror Theme</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Crimson+Pro:wght@300;400&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+    <style>
+
+        :root {
+
+            --bg: #080808;
+
+            --card-bg: #0f0f0f;
+
+            --text: #c8c8c8;
+
+            --red: #cc0000;
+
+            --red-glow: rgba(204, 0, 0, 0.5);
+
+            --red-dim: #7a0000;
+
+            --white: #e8e8e8;
+
+            --mono: 'Share Tech Mono', Georgia;
+
+            --display: 'Georgia', Georgia;
+
+            --serif: 'Times New Roman', Georgia, serif;
+
+        }
+
+        /* RESET & BASE */
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+
+            background: var(--bg);
+
+            color: var(--text);
+
+            font-family: var(--serif);
+
+            line-height: 1.8;
+
+            overflow-x: hidden;
+
+        }
+
+        /* HEADER HORROR - ALLINEATO A SINISTRA */
+
+        header {
+
+            min-height: 15vh;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: flex-start;
+
+            justify-content: center;
+
+            background: radial-gradient(ellipse at left, #1a0000 0%, #080808 75%);
+
+            position: relative;
+
+            border-bottom: 1px solid #1a1a1a;
+
+            padding: 20px 2%;
+
+        }
+
+        header h2 {
+
+            font-family: var(--display);
+
+            font-size: clamp(2rem, 6vw, 3rem);
+
+            color: var(--white);
+
+            letter-spacing: 6px;
+
+            text-shadow: 0 0 20px var(--red);
+
+            text-transform: uppercase;
+
+            line-height: 1;
+
+        }
+        header h2 {
+    /* ... i tuoi stili attuali ... */
+    animation: glitch 4s infinite;
+    position: relative;
+}
+
+@keyframes glitch {
+    0% { transform: translate(0); text-shadow: 0 0 20px var(--red); }
+    2% { transform: translate(-2px, 2px); text-shadow: 2px 0 var(--red), -2px 0 #fff; }
+    4% { transform: translate(2px, -2px); }
+    6% { transform: translate(0); }
+    100% { transform: translate(0); }
+}
+
+header .subtitle {
+    animation: fadeInSubtitle 2s ease-out forwards;
+}
+
+@keyframes fadeInSubtitle {
+    from { opacity: 0; letter-spacing: 15px; filter: blur(10px); }
+    to { opacity: 0.8; letter-spacing: 5px; filter: blur(0); }
+}
+
+        header .subtitle {
+
+            font-family: var(--mono);
+
+            color: var(--red);
+
+            letter-spacing: 5px;
+
+            font-size: 0.85rem;
+
+            margin-top: 3px;
+
+            opacity: 0.8;
+
+        }
+
+        /* NUOVO LAYOUT: CONTENITORE PRINCIPALE + SIDEBAR IMMAGINI */
+
+        .main-wrapper {
+
+            display: flex;
+
+            max-width: 2000px;
+
+            margin: 0 auto;
+
+            position: relative;
+
+            gap: 3px;
+
+            padding: 15px 20px;
+
+        }
+
+        /* CONTENITORE PRINCIPALE (SINISTRA) */
+
+        .container {
+
+            flex: 2;
+
+            min-width: 0;
+
+            padding: 0;
+
+        }
+
+        /* SIDEBAR DESTRA PER IMMAGINI */
+
+        .image-sidebar {
+
+            flex: 0.8;
+
+            min-width: 500px;
+
+            position: sticky;
+
+            top: 20px;
+
+            align-self: flex-start;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 30px;
+
+            animation: containerFade 0.5s ease forwards;
+
+        }
+
+        @keyframes containerFade {
+
+            from { 
+
+                opacity: 0.7; 
+
+                transform: translateX(10px);
+
+            }
+
+            to { 
+
+                opacity: 1; 
+
+                transform: translateX(0);
+
+            }
+
+        }
+
+        .sidebar-image {
+
+            width: 100%;
+
+            border: 1px solid #1e1e1e;
+
+            border-radius: 4px;
+
+            overflow: hidden;
+
+            background: #0a0a0a;
+
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        }
+
+        .sidebar-image img {
+
+            width: 100%;
+
+            height: 260px;
+
+            display: block;
+
+            filter: grayscale(30%);
+
+            transition: filter 0.3s ease;
+
+            object-fit: cover;
+
+        }
+
+        .sidebar-image:hover img {
+
+            filter: grayscale(0%);
+
+        }
+
+        .image-caption {
+
+            font-family: var(--mono);
+
+            font-size: 0.7rem;
+
+            color: #666;
+
+            text-align: center;
+
+            padding: 8px;
+
+            letter-spacing: 1px;
+
+            border-top: 1px solid #1a1a1a;
+
+        }
+
+       /* CONTAINER DELL'OCCHIO ANCORATO A DESTRA */
+#floating-eye {
+    position: absolute; /* Si ancora al primo genitore con position: relative (l'header) */
+    right: 4%;          /* Distanza dal bordo destro dell'header */
+    top: 50%;           /* Centratura verticale rispetto all'header */
+    transform: translateY(-50%); /* Correzione per centratura perfetta */
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+#floating-eye svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 0 6px var(--red));
+    transition: filter 0.3s;
+    animation: eyeIdleBlink 6s ease-in-out infinite;
+}
+
+#floating-eye:hover svg {
+    filter: drop-shadow(0 0 14px var(--red)) drop-shadow(0 0 28px var(--red));
+}
+
+/* RESTO DEL TUO DESIGN (Navigazione e Testi) */
+.selector-nav {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 0.5px;
+    flex-wrap: wrap;
+}
+
+/* Selettore dei capitoli: appaiono uno dopo l'altro */
+.selector-item {
+    font-family: var(--display);
+    font-size: 1.5rem;
+    color: #444;
+    cursor: pointer;
+    transition: 0.3s;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    
+    /* Animazione iniziale */
+    opacity: 0; 
+    animation: fadeIn 0.5s ease forwards;
+}
+
+/* Ritardi per i singoli item della nav (effetto cascata) */
+.selector-nav .selector-item:nth-child(1) { animation-delay: 0.2s; }
+.selector-nav .selector-item:nth-child(2) { animation-delay: 0.4s; }
+.selector-nav .selector-item:nth-child(3) { animation-delay: 0.6s; }
+
+/* Titolo Dinamico: animazione ogni volta che cambia */
+#dynamic-title {
+    font-family: var(--display);
+    font-size: 1.4rem;
+    color: var(--white);
+    margin-bottom: 15px;
+    letter-spacing: 3px;
+    border-bottom: 1px solid #1e1e1e;
+    padding-bottom: 10px;
+    text-transform: uppercase;
+    
+    /* Animazione */
+    opacity: 0;
+    animation: fadeIn 0.8s ease forwards;
+    animation-delay: 0.8s; /* Appare dopo i selettori */
+}
+.selector-item:hover, .selector-item.active {
+    color: var(--red);
+    text-shadow: 0 0 10px var(--red-glow);
+}
+
+section {
+    padding: 20px;
+    margin-bottom: 10px;
+    border-radius: 0 8px 8px 0;
+}
+
+h3 {
+    font-family: var(--display);
+    font-size: 1.4rem;
+    color: var(--white);
+    margin-bottom: 15px;
+    letter-spacing: 3px;
+    border-bottom: 1px solid #1e1e1e;
+    padding-bottom: 10px;
+    text-transform: uppercase;
+}
+
+p {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    color: var(--text);
+    display: none;
+}
+
+p.active {
+    display: block;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+    /* DESIGN FRECCIA VERSO IL BASSO */
+#header-arrow {
+    position: absolute;
+    right: 70px; 
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    transition: all 0.3s ease;
+}
+
+#header-arrow svg {
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: var(--red);
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    filter: drop-shadow(0 0 5px var(--red-glow));
+    /* Animazione cambiata per il movimento verticale */
+    animation: arrowBounce 2s infinite ease-in-out;
+}
+
+#header-arrow:hover svg {
+    filter: drop-shadow(0 0 12px var(--red)) drop-shadow(0 0 20px var(--red));
+    stroke: var(--white);
+}
+
+/* Nuova animazione: Rimbalzo verso il basso */
+@keyframes arrowBounce {
+    0%, 100% { transform: translateY(0); opacity: 0.6; }
+    50% { transform: translateY(10px); opacity: 1; }
+}
+
+/* Animazione di movimento inquieto */
+@keyframes arrowPulse {
+    0%, 100% { transform: translateX(0); opacity: 0.6; }
+    50% { transform: translateX(10px); opacity: 1; }
+    55% { transform: translateX(8px) skewX(-10deg); } /* Piccolo glitch */
+}
+
+/* DESIGN FRECCIA VERSO L'ALTO */
+#header-arrow-up {
+    position: absolute;
+    right: 120px; /* Posizionata a sinistra della freccia down (70px + 50px di scarto) */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    transition: all 0.3s ease;
+}
+
+#header-arrow-up svg {
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: var(--red);
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    filter: drop-shadow(0 0 5px var(--red-glow));
+    animation: arrowBounceUp 2s infinite ease-in-out;
+}
+
+#header-arrow-up:hover svg {
+    filter: drop-shadow(0 0 12px var(--red)) drop-shadow(0 0 20px var(--red));
+    stroke: var(--white);
+}
+
+/* Animazione: Rimbalzo verso l'alto */
+@keyframes arrowBounceUp {
+    0%, 100% { transform: translateY(0); opacity: 0.6; }
+    50% { transform: translateY(-10px); opacity: 1; }
+}
+
+        /* NAVIGAZIONE TITOLI SELEZIONABILI */
+        
+        .selector-nav {
+
+            display: flex;
+
+            gap: 20px;
+
+            margin-bottom: 0.5px;
+
+            flex-wrap: wrap;
+
+        }
+
+        .selector-item {
+
+            font-family: var(--display);
+
+            font-size: 1.5rem;
+
+            color: #444;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+
+        }
+
+        .selector-item:hover, .selector-item.active {
+
+            color: var(--red);
+
+            text-shadow: 0 0 10px var(--red-glow);
+
+        }
+
+        /* CARD/SEZIONI */
+
+        section {
+
+            padding: 20px;
+
+            margin-bottom: 10px;
+
+            border-radius: 0 8px 8px 0;
+
+        }
+
+        h3 {
+
+            font-family: var(--display);
+
+            font-size: 1.4rem;
+
+            color: var(--white);
+
+            margin-bottom: 15px;
+
+            letter-spacing: 3px;
+
+            border-bottom: 1px solid #1e1e1e;
+
+            padding-bottom: 10px;
+
+            text-transform: uppercase;
+
+        }
+
+        p {
+
+            margin-bottom: 10px;
+
+            font-size: 1.2rem;
+
+            color: var(--text);
+
+            display: none;
+
+        }
+
+        p.active {
+
+            display: block;
+
+            animation: fadeIn 0.5s ease forwards;
+
+        }
+
+        @keyframes fadeIn {
+
+            from { opacity: 0; transform: translateY(5px); }
+
+            to { opacity: 1; transform: translateY(0); }
+
+        }
+
+        /* FOOTER */
+
+        footer {
+
+            padding: 20px 2%;
+
+            text-align: left;
+
+            font-family: var(--mono);
+
+            font-size: 0.65rem;
+
+            color: #333;
+
+            letter-spacing: 3px;
+
+            border-top: 0.2px solid #111;
+
+        }
+
+        @media (max-width: 768px) {
+
+            header { padding-left: 2%; }
+
+            .main-wrapper {
+
+                flex-direction: column;
+
+                padding: 15px 2%;
+
+            }
+
+            .image-sidebar {
+
+                flex-direction: row;
+
+                flex-wrap: wrap;
+
+                position: static;
+
+                top: auto;
+
+                min-width: auto;
+
+            }
+
+            .sidebar-image {
+
+                flex: 1;
+
+                min-width: 150px;
+
+            }
+
+            .sidebar-image img {
+
+                height: 180px;
+
+            }
+
+        }
+    .header-link {
+    text-decoration: none;
+    display: inline-block;
+    width: 100%;
+}
+
+.header-link h2, .header-link .subtitle {
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.header-link h2:hover, .header-link .subtitle:hover {
+    opacity: 0.8;
+}
+
+.subtitle-link {
+    text-decoration: none;
+    display: inline-block;
+    width: 100%;
+}
+
+.subtitle-link .subtitle {
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.subtitle-link .subtitle:hover {
+    opacity: 0.8;
+}
+    </style>
+
+</head>
+
+<body>
+
+
+<header>
+
+        <h2>L'ultimo punto</h2>
+        <div class="subtitle">Il "Grande fratello" 2.0</div>
+
+
+       <!-- ========== FLOATING EYE HOME BUTTON ========== -->
+<div id="floating-eye" title="Torna all'inizio">
+    <svg viewBox="0 30 100 1">
+        <a href="home.html">
+        <path d="M5 25 Q30 2 50 2 Q70 2 95 25 Q70 48 50 48 Q30 48 5 25 Z" fill="#080808" stroke="#5a0000" stroke-width="2.5"/>
+        <!-- Iride -->
+        <circle cx="50" cy="25" r="13" fill="#1a0000" stroke="#cc0000" stroke-width="1.5"/>
+        <!-- Pupilla -->
+        <circle cx="50" cy="25" r="7" fill="#cc0000"/>
+        <!-- Riflesso -->
+        <circle cx="55" cy="20" r="2.5" fill="rgba(255,255,255,0.15)"/>
+        <!-- Vene sottili -->
+        <line x1="15" y1="22" x2="35" y2="24" stroke="#3a0000" stroke-width="0.8" opacity="0.6"/>
+        <line x1="65" y1="24" x2="85" y2="21" stroke="#3a0000" stroke-width="0.8" opacity="0.6"/>
+       </a>
+    </svg>
+
+    <div id="header-arrow" title="Scorri verso il basso">
+    <svg viewBox="0 0 24 24">
+        <a href="C:\Users\Andrea Pace\OneDrive\Desktop\tesi8\2\2.htm">
+        <polyline points="6 9 12 15 18 9"></polyline>
+       <line x1="12" y1="3" x2="12" y2="10" opacity="0.5" stroke-width="2"></line>
+    </a>
+    </svg>
+    </div>
+    <div id="header-arrow-up" title="Torna su">
+    <svg viewBox="0 0 24 24">
+        <a href="">
+        <polyline points="18 15 12 9 6 15"></polyline>
+        <line x1="12" y1="21" x2="12" y2="14" opacity="0.5" stroke-width="2"></line>
+    </svg>
+</a>
+</div>
+</div>
+
+</div>
+
+</header>
+
+
+
+    <div class="main-wrapper">
+
+        <div class="container">
+
+            <section id="content-section">
+
+                <div class="selector-nav">
+
+                    <div class="selector-item active" onclick="showText(1)">Capitolo I</div>
+
+                    <div class="selector-item" onclick="showText(2)">Capitolo II</div>
+
+                    <div class="selector-item" onclick="showText(3)">Capitolo III</div>
+
+                </div>
+
+                <h3 id="dynamic-title">- La sorveglianza:</h3>
+
+                <p id="text-1" class="active">
+Come in ogni regime l'ultimo punto del buon dittatore sta nella sorveglianza di massa, utile allo scopo di prevenire la possibile nascità di rivolte contro il proprio regime. Come già osservato con il Patriot Act, ogni espansione della sorveglianza di massa viene introdotta sotto la spinta di un’emergenza sociale. Negli Stati Uniti, questa dinamica ha raggiunto le aule scolastiche: nel solo 2024, si sono registrati oltre 80 episodi di sparatorie in ambito scolastico, una piaga che ha spinto l'amministrazione di Donald Trump a promuovere attivamente l'uso di tecnologie militari per la sicurezza interna.
+
+Non si tratta di proposte isolate: il governo Trump ha stanziato centinaia di milioni di dollari attraverso il Dipartimento della Sicurezza Interna (DHS) per finanziare programmi come il "Campus Guardian Angel". Questo progetto, già in fase di test nel 2025 e 2026 in stati come la Florida e la Georgia, prevede l'impiego di droni tattici nei corridoi e nei campus. Questi droni non si limitano a filmare, ma sono equipaggiati con:
+
+Misure non letali: spray al peperoncino, luci stroboscopiche e sirene per incapacitare eventuali assalitori.
+
+Monitoraggio costante: microfoni e software di riconoscimento facciale integrati nei sistemi di videosorveglianza della scuola.
+<br> <br>
+Questa "fortificazione" delle scuole gode di un forte appoggio politico perché viene presentata come l'unica alternativa efficace al controllo delle armi (tema su cui l'amministrazione è contraria). Tuttavia, l'idea che un drone statale "ronzi" costantemente sopra la testa degli studenti solleva profonde preoccupazioni etiche. Il rischio è la normalizzazione di un controllo totale fin dall'infanzia, dove la sorveglianza smette di essere una protezione e diventa uno strumento per monitorare il comportamento e il dissenso. Casi recenti di identificazione e arresto di studenti durante le proteste universitarie del 2024, facilitati proprio da droni e analisi
+<br> <br>
+- L'utilizzo della tecnologia AI:<br>
+Sia il sistema di sorveglianza statunitense in fase di espansione, guidato da Palantir Technologies, sia il modello di Social Credit cinese, poggiano su un’integrazione simbiotica con le Intelligenze Artificiali. In questi contesti, l’AI non è un semplice accessorio, ma il nucleo decisionale che trasforma oceani di dati frammentati in profili comportamentali predittivi. Teoricamente, questo potere si basa sul Machine Learning e sulle Reti Neurali Profonde. Il processo inizia con la fase di ingestion, in cui l’algoritmo assorbe flussi eterogenei: immagini, spostamenti GPS e transazioni. Questo flusso costante alimenta un addestramento continuo (reinforcement learning), dove ogni nuovo dato ed utilizzo di servizi con all'interno queste tecnologie, dall'uso di ChatGPT fino al recapthca di Google se lo stato richiedesse i loro dataset (le informazioni ottenute utili anche al machine learning tramite il riconoscimento dei pattern); ottimizza in tempo reale l'accuratezza delle previsioni dell'algoritmo. Attraverso il Pattern Recognition, l’AI identifica così correlazioni invisibili all’occhio umano, imparando dai dati storici. Ad esempio, analizzando decenni di rapporti di polizia e profili criminali, l'algoritmo estrae modelli di "firma digitale" associati all'illegalità. Se il comportamento di un cittadino comune: dall'acquisto di certi beni, la frequentazione di determinati quartieri o l'uso di app criptate. Inizia a somigliare statisticamente a questi modelli, il sistema innalza automaticamente il suo "punteggio di rischio". Oltre ai dati testuali, l'AI utilizza la Computer Vision per la sorveglianza biometrica: non riconosce solo i volti, ma analizza l'andatura (per identificare persone di spalle) e le micro-espressioni facciali o la temperatura corporea per rilevare stress e "intenti criminali" prima ancora che l'azione avvenga.
+<br><br>
+-Il modello cinese: <br>
+In Cina, questa tecnologia smette di essere solo uno strumento investigativo per diventare un vero e proprio giudice della moralità pubblica attraverso il Social Credit System. Qui l'integrazione dell'AI serve a regolare ogni aspetto della vita civile in tempo reale. Attraverso l'immenso network di telecamere a riconoscimento facciale e l'analisi dei pagamenti digitali (Alipay e WeChat), l'algoritmo assegna a ogni cittadino un punteggio dinamico. Non si puniscono solo i reati: se l'AI rileva che un individuo attraversa la strada col rosso, spreca cibo in un ristorante, gioca troppo ai videogiochi o esprime critiche verso il Partito online, il suo punteggio crolla immediatamente. Le conseguenze sono sistemiche e brutali: chi ha un punteggio basso può vedersi negato il diritto di viaggiare su treni ad alta velocità o aerei, l'accesso a scuole prestigiose per i figli o l'esclusione dai concorsi pubblici. In questo modello, l'intelligenza artificiale agisce come un ente supremo che non ammette appello, trasformando la conformità politica e sociale in un requisito biologico per la sopravvivenza economica all'interno della società.
+
+</p>
+                <p id="text-2">
+Negli Stati Uniti, la punta di diamante di questa deriva è il software Gotham di Palantir. Questo strumento funziona come un aggregatore totale di "verità digitale", integrandosi con CIA, FBI e dipartimenti di polizia. Gotham "mangia" tabulati telefonici, cartelle cliniche, registri di volo e transazioni bancarie senza la necessità di un mandato specifico per ogni singolo dato, poiché il software è progettato per trovare "connessioni" in tempo reale. Il fine ultimo è la polizia predittiva: assegnare livelli di pericolosità a persone che non hanno ancora commesso alcun reato, basandosi su chi conoscono e dove si muovono. Tuttavia, questo sistema soffre del gravissimo problema della "Black Box" (Scatola Nera). Le reti neurali compiono miliardi di calcoli statistici così complessi che nemmeno i programmatori o gli agenti di polizia sanno spiegare esattamente perché l'AI abbia etichettato un cittadino come "minaccia". Questo crea un vuoto giuridico spaventoso: il cittadino diventa vittima di un "pregiudizio algoritmico". Se l'AI viene addestrata su dati storici che contengono razzismo o bias verso certe minoranze, essa continuerà a indicare quelle persone come sospette, creando un circolo vizioso di discriminazione automatizzata e scientifica contro cui è impossibile difendersi legalmente.
+<br> <br>- I controversi fondatori di Palantir: <br>
+Dietro queste tecnologie si celano figure che operano seguendo visioni messianiche e radicali. I fondatori di Palantir, Peter Thiel e Alex Karp, sono noti per dichiarazioni che sfidano i limiti dell'etica. Alex Karp, interrogato sul fatto se l'avanzamento tecnologico sia più importante della sopravvivenza stessa dell'umanità, ha risposto con un'ambiguità inquietante, lasciando intendere che il progresso sia un fine supremo. Peter Thiel, d'altro canto, è il "kingmaker" politico di questa visione: è stato il principale finanziatore e mentore di JD Vance, figura chiave dell'amministrazione Trump, garantendo un legame diretto tra il potere esecutivo e il controllo tecnologico privato.
+
+Il pensiero di Palantir è riassunto in una sorta di "Manifesto" ideologico che delinea una visione del mondo militarizzata e tecnocratica. Ecco i punti salienti, accompagnati dalle relative critiche:
+<br> <br> 
+-La Silicon Valley come arsenale della democrazia: L'idea che le aziende tecnologiche debbano diventare i principali fornitori di armi digitali e fisici dello Stato. Con però Si teme la nascita di un complesso militare-digitale privato che risponde solo al profitto e non al controllo parlamentare, rendendo la guerra un "prodotto" tecnologico continuo
+<br> <br>
+-Hard Power sopra la diplomazia: La convinzione che la stabilità mondiale si ottenga solo attraverso la superiorità tecnologica e militare (Hard Power), disprezzando i tempi lenti della diplomazia. Questo però approccio alimenterebbe una corsa agli armamenti che porterà innevitabilmente a ciò che successe nella WW1 con l'evoluzione del digitale aggiunto alla giustifica dell'intervento preventivo, aumentando il rischio di conflitti globali basati su calcoli algoritmici.
+<br> <br>
+-Gerarchie culturali e ritorno alla militarizzazione: La visione di una società ordinata secondo gerarchie rigide, dove la disciplina militare e la sorveglianza sono i cardini della convivenza civile. Questa sarebbe la fine del concetto di democrazia liberale e inclusiva; si rischia di tornare a modelli sociali autoritari dove chi è "fuori dai ranghi" viene isolato o punito dal sistema.
+<br> <br>
+-Decisioni pubbliche controllate dall'AI: L'idea che i processi decisionali di uno Stato (economia, giustizia, welfare) debbano essere "ottimizzati" da algoritmi per eliminare l'errore umano. Si tratta di una "dittatura dell'algoritmo". Se le decisioni pubbliche sono prese da una scatola nera tecnologica, il cittadino perde il diritto di contestare o comprendere le scelte che influenzano la sua vita.
+<br> <br>
+-Inevitabilità delle armi autonome (Killer Robots): La tesi secondo cui lo sviluppo di macchine capaci di uccidere senza intervento umano sia un progresso inarrestabile a cui l'Occidente deve arrivare per primo. Questa è il punto più preoccupantemente grave per la comunità internazionale (ONU). Lasciare che una macchina decida sulla vita e sulla morte solleva dilemmi morali insanabili e il rischio di massacri automatizzati dovuti a errori nel codice.
+
+<br> <br>
+Questa visione trasforma il cittadino da soggetto portatore di diritti a "variabile da ottimizzare". La vicinanza di Thiel ai vertici del governo statunitense suggerisce che questo non sia più solo un sogno distopico di un miliardario, ma un programma politico concreto per il prossimo decennio.
+
+
+</p>
+                <p id="text-3">
+L’ultimo punto del manifesto di Palantir: "l’inevitabilità delle armi autonome" non è più una previsione futuristica, ma una realtà operativa. L’integrazione delle Intelligenze Artificiali nei sistemi d'arma si sta evolvendo rapidamente: si è passati da sistemi Human-in-the-loop (dove l'uomo deve confermare ogni azione) a sistemi Human-out-of-the-loop, in cui l'algoritmo identifica, seleziona e colpisce il bersaglio in totale autonomia. Queste AI non si limitano a guidare droni, ma elaborano milioni di dati provenienti da sensori satellitari e intercettazioni per generare liste di bersagli in tempi che superano la capacità di analisi umana.
+<br> <br>
+La disumanizzazione del bersaglio: il caso della "precisione" al 90%
+L'uso di tecnologie simili a quelle fornite da Palantir nel conflitto in Palestina ha sollevato enormi perplessità etiche. Alcuni report hanno evidenziato come l'accuratezza di queste AI nell'identificare presunti terroristi si attesti attorno al 90%. Quando è stato interrogato sul restante 10% ovvero sul margine di errore che si traduce in vite umane innocenti il fondatore Alex Karp ha mostrato un distacco preoccupante, concentrandosi esclusivamente sul miglioramento tecnico della percentuale piuttosto che sulla tragedia dell'errore.
+<br> <br>
+Questo evidenzia un processo di disumanizzazione e deresponsabilizzazione: l’incidente viene trattato come un "bug" del software e non come un crimine di guerra. Se un'AI autonoma commette un errore fatale, chi è il colpevole da condannare? Il programmatore, il generale o l'algoritmo stesso? In questo vuoto giuridico, le aziende tecnologiche diventano too big to fail (troppo grandi per fallire o essere processate), godendo di una sostanziale immunità garantita dalla necessità bellica degli Stati.
+<br> <br>
+- L’assenza di integrità morale delle AI
+Il pericolo più estremo non riguarda però solo il singolo errore, ma la gestione strategica del conflitto. Uno studio condotto dal ricercatore Kenneth Payne del King's College di Londra ha analizzato il messo tre AI diverse dinnanzi in simulazioni di guerra strategica rivaleggiando tra loro. I risultati sono stati allarmanti: l'intelligenza artificiale, essendo priva di integrità morale e di empatia, opera secondo una logica puramente utilitaristica di "vittoria della missione", Dove spesso nelle AI portarono come metodo per vincere contro l'avversario l'escalation nucleare circa il 90% delle volte.
+<br> <br>
+Nelle simulazioni, le AI hanno dimostrato una tendenza sistematica all'escalation nucleare. Per un algoritmo, l’opzione atomica può apparire come la soluzione "logica" e più veloce per eliminare una minaccia e vincere il conflitto, non avendo la capacità di comprendere l'orrore della distruzione totale o la fine della civiltà umana. Questo dimostra che affidare decisioni strategiche a una macchina non significa renderle più "razionali", ma privarle dell'ultimo baluardo di umanità che impedisce l'annientamento globale.
+<br> <br>
+- Il caso Anthropic e il ricatto del Pentagono:<br>
+Mentre aziende come Palantir scelgono la via della militarizzazione totale, Anthropic fondata dai fratelli Dario e Daniela Amodei (ex membri di OpenAI) ha cercato di percorrere una strada radicalmente diversa con la sua AI, Claude. Claude è stata inizialmente considerata come la candidata ideale per l'integrazione negli apparati di Stato tramite emendamenti legati al potenziamento dei servizi civili e della sicurezza nazionale attraverso partner privati. Tuttavia, preoccupata dall'integrità morale del proprio software, Anthropic ha implementato la cosiddetta Constitutional AI.
+<br> <br>
+Questa tecnologia si basa su un set di principi scritti (una "Costituzione") che l'AI deve consultare per decidere come rispondere, senza bisogno di supervisione umana costante. I punti salienti della Costituzione di Claude includono:
+<br> <br>
+-Rispetto dei Diritti Umani: Ispirato alla Dichiarazione Universale dell'ONU.
+<br> <br>
+-Neutralità ed Evitamento del Pregiudizio: Istruzioni per non generare contenuti discriminatori o radicalizzanti.
+<br> <br>
+-Non-Violenza: Il divieto assoluto di assistere in compiti che portino a danni fisici o alla pianificazione di azioni belliche offensive.
+<br> <br>
+Questa "bontà morale", inizialmente vista come un valore aggiunto, è diventata il centro di un durissimo scontro politico. Pete Hegseth, a capo del Dipartimento della Difesa, ha attuato un vero e proprio ricatto istituzionale nei confronti di Anthropic. Hegseth ha imposto all'azienda la cancellazione immediata della Costituzione AI e la rimozione di ogni filtro etico, pretendendo una "libertà totale di calcolo" per scopi bellici. Il ricatto era chiaro: se Anthropic non avesse rimosso le limitazioni, sarebbe stata preclusa da ogni contratto statale, subendo un danno economico nominale immenso. Il CEO di Anthropic ha rifiutato, rivendicando il diritto inviolabile all'autonomia etica dell'azienda. Come conseguenza, il governo ha rimpiazzato Anthropic con OpenAI, una mossa che ha scatenato una "disinstallazione di massa" delle app governative da parte di cittadini preoccupati. Paradossalmente, questo tentativo di distruzione ha portato Claude a diventare l'applicazione più scaricata negli store digitali nel 2025, con una crescita record degli utenti che cercavano un'AI non compromessa dal potere bellico. La vicenda è finita in tribunale, dove il governo è stato accusato di pratiche illegali e abuso di potere; il processo si è concluso con una sentenza storica che ha riconosciuto l'illegittimità delle pressioni statali volte a forzare le aziende private alla creazione di armi digitali prive di etica.
+                </p>
+            </section>
+
+        </div>
+
+
+
+        <!-- SIDEBAR CON IMMAGINI CHE CAMBIANO IN BASE AL TESTO -->
+
+        <div class="image-sidebar" id="image-sidebar">
+
+            <div class="sidebar-image">
+
+                <img id="img-1-src" src="https://wallpapers.com/images/hd/loading-640-x-1066-background-fbz6b4p4t5hjigif.jpg" alt="NSA Surveillance">
+
+                <div class="image-caption" id="caption-1">PRISM • Sorveglianza Globale</div>
+
+            </div>
+
+            <div class="sidebar-image">
+
+                <img id="img-2-src" src="https://wallpapers.com/images/hd/loading-640-x-1066-background-fbz6b4p4t5hjigif.jpg_by_the_Independents_of_the_Westminster_Assembly_of_Divines%2C_1644.jpg/500px-Assertion_of_Liberty_of_Conscience_by_the_Independents_of_the_Westminster_Assembly_of_Divines%2C_1644.jpg" alt="Edward Snowden">
+
+                <div class="image-caption" id="caption-2">Five Eyes • Alleanza Intelligence</div>
+
+            </div>
+
+            <div class="sidebar-image">
+
+                <img id="img-3-src" src="https://wallpapers.com/images/hd/loading-640-x-1066-background-fbz6b4p4t5hjigif.jpg" alt="GDPR Europe">
+
+                <div class="image-caption" id="caption-3">Patriot Act • 11 Settembre 2001</div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <footer>
+
+        © 2026 - ACCESSO RISERVATO - PROTOCOLLO V.O.I.D.
+
+    </footer>
+
+    <script>
+
+        // Configurazione immagini per ogni capitolo
+        const imagesConfig = {
+            1: {
+                images: [
+                    {
+                        src: "https://santofabiano.it/wp-content/uploads/2021/02/Piu_Sicurezza_videosorveglianza-300x162-1.jpg",
+                    },
+                    {
+                        src: "https://prodotti.mondialtec.it/wp-content/uploads/2020/10/Telecamere-IP-WIFI-con-intelligenza-artificiale-motion-detection-avanzato-deep-learning.jpg",
+                    },
+                    {
+                        src: "https://lepetitjournal.com/_next/image?url=https%3A%2F%2Fbackoffice.lepetitjournal.com%2Fsites%2Fdefault%2Ffiles%2F2018-11%2Fnote%2520credit%2520social.jpg&w=750&q=75",
+                    }
+                ]
+            },
+            2: {
+                images: [
+                    {
+                        src: "https://cdn.prod.website-files.com/63f46dc8ada663b2260ad042/65e982a07164727528b4ff79_Palantir%20Technologies%20.jpg",
+
+                    },
+                    {
+                        src: "https://i.ytimg.com/vi/gbDOo9XhXKM/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDd84o_vheTyLv6FWxmaarKdv7ICQ",
+                    },
+                    {
+                        src: "https://d3.harvard.edu/platform-digit/wp-content/uploads/sites/2/2022/11/1-2.png",
+                                        }
+                ]
+            },
+            3: {
+                images: [
+                    {
+                        src: "https://italianelfuturo.com/wp-content/uploads/2025/05/Armi-autonome.png",
+                    },
+                    {
+                        src: "https://www.iltascabile.com/wp-content/uploads/2022/07/B279865C-6C4D-4367-969E-BD17338EF6B8.jpeg",
+                    },
+                    {
+                        src: "https://cdn.sanity.io/images/4zrzovbb/website/25bbf895e395c4c96313d1d5e8ed6ab1ae3ee169-2880x1620.png",
+                    }
+                ]
+            }
+        };
+
+        function updateImagesForChapter(chapterId) {
+            const config = imagesConfig[chapterId];
+            if (!config) return;
+
+            // Aggiungi animazione al container intero
+            const sidebar = document.getElementById('image-sidebar');
+            sidebar.style.animation = 'none';
+            sidebar.offsetHeight; // Forza il reflow
+            sidebar.style.animation = 'containerFade 0.5s ease forwards';
+
+            // Aggiorna ogni immagine e didascalia
+            for (let i = 1; i <= 3; i++) {
+                const imgElement = document.getElementById(`img-${i}-src`);
+                const captionElement = document.getElementById(`caption-${i}`);
+                
+                if (imgElement && captionElement && config.images[i-1]) {
+                    imgElement.src = config.images[i-1].src;
+                    captionElement.textContent = config.images[i-1].caption;
+                }
+            }
+        }
+
+function showText(id) {
+    // ... (codice esistente per i selettori e i testi) ...
+    document.querySelectorAll('.selector-item').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.container p').forEach(el => el.classList.remove('active'));
+    
+    event.target.classList.add('active');
+    document.getElementById('text-' + id).classList.add('active');
+    
+    // --- AGGIUNGI DA QUI ---
+    const titleEl = document.getElementById('dynamic-title');
+    const titles = ["L'Origine", "Le conseguenze", "L'eredità"];
+    
+    // Reset animazione titolo
+    titleEl.style.animation = 'none';
+    titleEl.offsetHeight; // Forza il browser a recepire il reset
+    titleEl.style.animation = 'fadeIn 0.8s ease forwards';
+    
+    titleEl.innerText = titles[id-1];
+    // --- A QUI ---
+
+    updateImagesForChapter(id);
+}
+
+        // Barra di progresso scroll (opzionale)
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            if(document.getElementById("scroll-progress")) {
+                document.getElementById("scroll-progress").style.width = scrolled + "%";
+            }
+        };
+
+        // Inizializza le immagini per il capitolo I all'avvio
+        updateImagesForChapter(1);
+    </script>
+
+</body>
+
+</html>

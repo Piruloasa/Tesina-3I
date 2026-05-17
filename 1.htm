@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+
+<html lang="it">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>VOID - Horror Theme</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Crimson+Pro:wght@300;400&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+     <style>
+
+        :root {
+
+            --bg: #080808;
+
+            --card-bg: #0f0f0f;
+
+            --text: #c8c8c8;
+
+            --red: #cc0000;
+
+            --red-glow: rgba(204, 0, 0, 0.5);
+
+            --red-dim: #7a0000;
+
+            --white: #e8e8e8;
+
+            --mono: 'Share Tech Mono', Georgia;
+
+            --display: 'Georgia', Georgia;
+
+            --serif: 'Times New Roman', Georgia, serif;
+
+        }
+
+        /* RESET & BASE */
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+
+            background: var(--bg);
+
+            color: var(--text);
+
+            font-family: var(--serif);
+
+            line-height: 1.8;
+
+            overflow-x: hidden;
+
+        }
+
+        /* HEADER HORROR - ALLINEATO A SINISTRA */
+
+        header {
+
+            min-height: 15vh;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: flex-start;
+
+            justify-content: center;
+
+            background: radial-gradient(ellipse at left, #1a0000 0%, #080808 75%);
+
+            position: relative;
+
+            border-bottom: 1px solid #1a1a1a;
+
+            padding: 20px 2%;
+
+        }
+
+        header h2 {
+
+            font-family: var(--display);
+
+            font-size: clamp(2rem, 6vw, 3rem);
+
+            color: var(--white);
+
+            letter-spacing: 6px;
+
+            text-shadow: 0 0 20px var(--red);
+
+            text-transform: uppercase;
+
+            line-height: 1;
+
+        }
+        header h2 {
+    /* ... i tuoi stili attuali ... */
+    animation: glitch 4s infinite;
+    position: relative;
+}
+
+@keyframes glitch {
+    0% { transform: translate(0); text-shadow: 0 0 20px var(--red); }
+    2% { transform: translate(-2px, 2px); text-shadow: 2px 0 var(--red), -2px 0 #fff; }
+    4% { transform: translate(2px, -2px); }
+    6% { transform: translate(0); }
+    100% { transform: translate(0); }
+}
+
+header .subtitle {
+    animation: fadeInSubtitle 2s ease-out forwards;
+}
+
+@keyframes fadeInSubtitle {
+    from { opacity: 0; letter-spacing: 15px; filter: blur(10px); }
+    to { opacity: 0.8; letter-spacing: 5px; filter: blur(0); }
+}
+
+        header .subtitle {
+
+            font-family: var(--mono);
+
+            color: var(--red);
+
+            letter-spacing: 5px;
+
+            font-size: 0.85rem;
+
+            margin-top: 3px;
+
+            opacity: 0.8;
+
+        }
+
+        /* NUOVO LAYOUT: CONTENITORE PRINCIPALE + SIDEBAR IMMAGINI */
+
+        .main-wrapper {
+
+            display: flex;
+
+            max-width: 2000px;
+
+            margin: 0 auto;
+
+            position: relative;
+
+            gap: 3px;
+
+            padding: 15px 20px;
+
+        }
+
+        /* CONTENITORE PRINCIPALE (SINISTRA) */
+
+        .container {
+
+            flex: 2;
+
+            min-width: 0;
+
+            padding: 0;
+
+        }
+
+        /* SIDEBAR DESTRA PER IMMAGINI */
+
+        .image-sidebar {
+
+            flex: 0.8;
+
+            min-width: 500px;
+
+            position: sticky;
+
+            top: 20px;
+
+            align-self: flex-start;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 30px;
+
+            animation: containerFade 0.5s ease forwards;
+
+        }
+
+        @keyframes containerFade {
+
+            from { 
+
+                opacity: 0.7; 
+
+                transform: translateX(10px);
+
+            }
+
+            to { 
+
+                opacity: 1; 
+
+                transform: translateX(0);
+
+            }
+
+        }
+
+        .sidebar-image {
+
+            width: 100%;
+
+            border: 1px solid #1e1e1e;
+
+            border-radius: 4px;
+
+            overflow: hidden;
+
+            background: #0a0a0a;
+
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        }
+
+        .sidebar-image img {
+
+            width: 100%;
+
+            height: 260px;
+
+            display: block;
+
+            filter: grayscale(30%);
+
+            transition: filter 0.3s ease;
+
+            object-fit: cover;
+
+        }
+
+        .sidebar-image:hover img {
+
+            filter: grayscale(0%);
+
+        }
+
+        .image-caption {
+
+            font-family: var(--mono);
+
+            font-size: 0.7rem;
+
+            color: #666;
+
+            text-align: center;
+
+            padding: 8px;
+
+            letter-spacing: 1px;
+
+            border-top: 1px solid #1a1a1a;
+
+        }
+
+       /* CONTAINER DELL'OCCHIO ANCORATO A DESTRA */
+#floating-eye {
+    position: absolute; /* Si ancora al primo genitore con position: relative (l'header) */
+    right: 4%;          /* Distanza dal bordo destro dell'header */
+    top: 50%;           /* Centratura verticale rispetto all'header */
+    transform: translateY(-50%); /* Correzione per centratura perfetta */
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+#floating-eye svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 0 6px var(--red));
+    transition: filter 0.3s;
+    animation: eyeIdleBlink 6s ease-in-out infinite;
+}
+
+#floating-eye:hover svg {
+    filter: drop-shadow(0 0 14px var(--red)) drop-shadow(0 0 28px var(--red));
+}
+
+/* RESTO DEL TUO DESIGN (Navigazione e Testi) */
+.selector-nav {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 0.5px;
+    flex-wrap: wrap;
+}
+
+/* Selettore dei capitoli: appaiono uno dopo l'altro */
+.selector-item {
+    font-family: var(--display);
+    font-size: 1.5rem;
+    color: #444;
+    cursor: pointer;
+    transition: 0.3s;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    
+    /* Animazione iniziale */
+    opacity: 0; 
+    animation: fadeIn 0.5s ease forwards;
+}
+
+/* Ritardi per i singoli item della nav (effetto cascata) */
+.selector-nav .selector-item:nth-child(1) { animation-delay: 0.2s; }
+.selector-nav .selector-item:nth-child(2) { animation-delay: 0.4s; }
+.selector-nav .selector-item:nth-child(3) { animation-delay: 0.6s; }
+
+/* Titolo Dinamico: animazione ogni volta che cambia */
+#dynamic-title {
+    font-family: var(--display);
+    font-size: 1.4rem;
+    color: var(--white);
+    margin-bottom: 15px;
+    letter-spacing: 3px;
+    border-bottom: 1px solid #1e1e1e;
+    padding-bottom: 10px;
+    text-transform: uppercase;
+    
+    /* Animazione */
+    opacity: 0;
+    animation: fadeIn 0.8s ease forwards;
+    animation-delay: 0.8s; /* Appare dopo i selettori */
+}
+.selector-item:hover, .selector-item.active {
+    color: var(--red);
+    text-shadow: 0 0 10px var(--red-glow);
+}
+
+section {
+    padding: 20px;
+    margin-bottom: 10px;
+    border-radius: 0 8px 8px 0;
+}
+
+h3 {
+    font-family: var(--display);
+    font-size: 1.4rem;
+    color: var(--white);
+    margin-bottom: 15px;
+    letter-spacing: 3px;
+    border-bottom: 1px solid #1e1e1e;
+    padding-bottom: 10px;
+    text-transform: uppercase;
+}
+
+p {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    color: var(--text);
+    display: none;
+}
+
+p.active {
+    display: block;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+    /* DESIGN FRECCIA VERSO IL BASSO */
+#header-arrow {
+    position: absolute;
+    right: 70px; 
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    transition: all 0.3s ease;
+}
+
+#header-arrow svg {
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: var(--red);
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    filter: drop-shadow(0 0 5px var(--red-glow));
+    /* Animazione cambiata per il movimento verticale */
+    animation: arrowBounce 2s infinite ease-in-out;
+}
+
+#header-arrow:hover svg {
+    filter: drop-shadow(0 0 12px var(--red)) drop-shadow(0 0 20px var(--red));
+    stroke: var(--white);
+}
+
+/* Nuova animazione: Rimbalzo verso il basso */
+@keyframes arrowBounce {
+    0%, 100% { transform: translateY(0); opacity: 0.6; }
+    50% { transform: translateY(10px); opacity: 1; }
+}
+
+/* Animazione di movimento inquieto */
+@keyframes arrowPulse {
+    0%, 100% { transform: translateX(0); opacity: 0.6; }
+    50% { transform: translateX(10px); opacity: 1; }
+    55% { transform: translateX(8px) skewX(-10deg); } /* Piccolo glitch */
+}
+
+/* DESIGN FRECCIA VERSO L'ALTO */
+#header-arrow-up {
+    position: absolute;
+    right: 120px; /* Posizionata a sinistra della freccia down (70px + 50px di scarto) */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    transition: all 0.3s ease;
+}
+
+#header-arrow-up svg {
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: var(--red);
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    filter: drop-shadow(0 0 5px var(--red-glow));
+    animation: arrowBounceUp 2s infinite ease-in-out;
+}
+
+#header-arrow-up:hover svg {
+    filter: drop-shadow(0 0 12px var(--red)) drop-shadow(0 0 20px var(--red));
+    stroke: var(--white);
+}
+
+/* Animazione: Rimbalzo verso l'alto */
+@keyframes arrowBounceUp {
+    0%, 100% { transform: translateY(0); opacity: 0.6; }
+    50% { transform: translateY(-10px); opacity: 1; }
+}
+
+        /* NAVIGAZIONE TITOLI SELEZIONABILI */
+        
+        .selector-nav {
+
+            display: flex;
+
+            gap: 20px;
+
+            margin-bottom: 0.5px;
+
+            flex-wrap: wrap;
+
+        }
+
+        .selector-item {
+
+            font-family: var(--display);
+
+            font-size: 1.5rem;
+
+            color: #444;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+
+        }
+
+        .selector-item:hover, .selector-item.active {
+
+            color: var(--red);
+
+            text-shadow: 0 0 10px var(--red-glow);
+
+        }
+
+        /* CARD/SEZIONI */
+
+        section {
+
+            padding: 20px;
+
+            margin-bottom: 10px;
+
+            border-radius: 0 8px 8px 0;
+
+        }
+
+        h3 {
+
+            font-family: var(--display);
+
+            font-size: 1.4rem;
+
+            color: var(--white);
+
+            margin-bottom: 15px;
+
+            letter-spacing: 3px;
+
+            border-bottom: 1px solid #1e1e1e;
+
+            padding-bottom: 10px;
+
+            text-transform: uppercase;
+
+        }
+
+        p {
+
+            margin-bottom: 10px;
+
+            font-size: 1.2rem;
+
+            color: var(--text);
+
+            display: none;
+
+        }
+
+        p.active {
+
+            display: block;
+
+            animation: fadeIn 0.5s ease forwards;
+
+        }
+
+        @keyframes fadeIn {
+
+            from { opacity: 0; transform: translateY(5px); }
+
+            to { opacity: 1; transform: translateY(0); }
+
+        }
+
+        /* FOOTER */
+
+        footer {
+
+            padding: 20px 2%;
+
+            text-align: left;
+
+            font-family: var(--mono);
+
+            font-size: 0.65rem;
+
+            color: #333;
+
+            letter-spacing: 3px;
+
+            border-top: 0.2px solid #111;
+
+        }
+
+        @media (max-width: 768px) {
+
+            header { padding-left: 2%; }
+
+            .main-wrapper {
+
+                flex-direction: column;
+
+                padding: 15px 2%;
+
+            }
+
+            .image-sidebar {
+
+                flex-direction: row;
+
+                flex-wrap: wrap;
+
+                position: static;
+
+                top: auto;
+
+                min-width: auto;
+
+            }
+
+            .sidebar-image {
+
+                flex: 1;
+
+                min-width: 150px;
+
+            }
+
+            .sidebar-image img {
+
+                height: 180px;
+
+            }
+
+        }
+    .header-link {
+    text-decoration: none;
+    display: inline-block;
+    width: 100%;
+}
+
+.header-link h2, .header-link .subtitle {
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.header-link h2:hover, .header-link .subtitle:hover {
+    opacity: 0.8;
+}
+
+.subtitle-link {
+    text-decoration: none;
+    display: inline-block;
+    width: 100%;
+}
+
+.subtitle-link .subtitle {
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.subtitle-link .subtitle:hover {
+    opacity: 0.8;
+}
+</style>
+</head>
+
+<body>
+
+
+<header>
+
+        <h2>Il DATAGATE</h2>
+        <div class="subtitle">Il vaso di Pandora</div>
+
+
+       <!-- ========== FLOATING EYE HOME BUTTON ========== -->
+<div id="floating-eye" title="Torna all'inizio">
+    <svg viewBox="0 30 100 1">
+        <a href="home.html">
+        <path d="M5 25 Q30 2 50 2 Q70 2 95 25 Q70 48 50 48 Q30 48 5 25 Z" fill="#080808" stroke="#5a0000" stroke-width="2.5"/>
+        <!-- Iride -->
+        <circle cx="50" cy="25" r="13" fill="#1a0000" stroke="#cc0000" stroke-width="1.5"/>
+        <!-- Pupilla -->
+        <circle cx="50" cy="25" r="7" fill="#cc0000"/>
+        <!-- Riflesso -->
+        <circle cx="55" cy="20" r="2.5" fill="rgba(255,255,255,0.15)"/>
+        <!-- Vene sottili -->
+        <line x1="15" y1="22" x2="35" y2="24" stroke="#3a0000" stroke-width="0.8" opacity="0.6"/>
+        <line x1="65" y1="24" x2="85" y2="21" stroke="#3a0000" stroke-width="0.8" opacity="0.6"/>
+       </a>
+    </svg>
+
+    <div id="header-arrow" title="Scorri verso il basso">
+    <svg viewBox="0 0 24 24">
+        <a href="C:\Users\Andrea Pace\OneDrive\Desktop\tesi8\2\2.htm">
+        <polyline points="6 9 12 15 18 9"></polyline>
+       <line x1="12" y1="3" x2="12" y2="10" opacity="0.5" stroke-width="2"></line>
+    </a>
+    </svg>
+    </div>
+</div>
+
+</div>
+
+</header>
+
+
+
+    <div class="main-wrapper">
+
+        <div class="container">
+
+            <section id="content-section">
+
+                <div class="selector-nav">
+
+                    <div class="selector-item active" onclick="showText(1)">Capitolo I</div>
+
+                    <div class="selector-item" onclick="showText(2)">Capitolo II</div>
+
+                    <div class="selector-item" onclick="showText(3)">Capitolo III</div>
+
+                </div>
+
+                <h3 id="dynamic-title">Il DATAGATE</h3>
+
+                <p id="text-1" class="active">
+                    - Funzionamento: <br>
+                 Il termine "Datagate" identifica lo scandalo scoppiato nel 2013 in seguito alle rivelazioni di Edward Snowden, un ex consulente informatico della CIA e della National Security Agency (NSA). Snowden rese pubblica una massiccia fuga di documenti top-secret, svelando l'esistenza di complessi programmi di sorveglianza globale volti a monitorare le comunicazioni private di milioni di cittadini, sia statunitensi che stranieri.
+                <br>
+                  Queste operazioni venivano condotte dalla NSA in stretta collaborazione con il network "Five Eyes" (un'alleanza di intelligence che comprende Stati Uniti, Regno Unito, Canada, Australia e Nuova Zelanda).
+
+                  Cuore pulsante di questo sistema era il programma PRISM, che permetteva alle agenzie di accedere direttamente ai server dei principali colossi del web tra cui Google, Facebook, Microsoft e Apple; raccogliendo e-mail, chat, video e file archiviati senza che gli utenti ne fossero a conoscenza.
+         
+                    <br> <br>
+                
+               
+                - Giustificazione: <br>
+                    
+
+                    Per comprendere la genesi di tale sistema, è necessario analizzare il clima di forte tensione geopolitica dei primi anni 2000. In seguito agli attentati terroristici dell'11 settembre 2001, il governo degli Stati Uniti, sotto la presidenza di George W. Bush, approvò con urgenza il Patriot Act (Uniting and Strengthening America by Providing Appropriate Tools Required to Intercept and Obstruct Terrorism). Questa legge ampliò drasticamente i poteri delle agenzie governative, abbattendo molte barriere legali a tutela della privacy. Il Patriot Act permise, tra le altre cose:
+                   L'accesso a dati personali (bancari, medici e digitali) senza la necessità di un mandato specifico; Una semplificazione delle procedure per le intercettazioni telefoniche e telematiche su larga scala;
+
+Maggiore libertà nella detenzione di cittadini stranieri sospettati di attività terroristiche.
+<br>
+In questo scenario, la sicurezza nazionale divenne la priorità assoluta, giustificando agli occhi delle autorità il sacrificio della riservatezza dei dati dei singoli individui in nome della lotta al terrorismo internazionale e della prevenzione di nuove minacce globali.
+
+                    
+                </p>
+                <p id="text-2">
+
+                Le rivelazioni di Edward Snowden hanno segnato uno spartiacque nella storia contemporanea, trasformando un tecnico informatico in una delle figure più discusse del XXI secolo. Dopo aver svelato i programmi di sorveglianza di massa della NSA, Snowden è stato accusato di spionaggio dal Dipartimento di Giustizia statunitense, dando inizio a una fuga rocambolesca terminata in Russia. Qui, il Cremlino ha colto l'occasione per trasformare l'informatore in un potente strumento di propaganda anti-occidentale, concedendogli asilo e, nel 2022, la cittadinanza ufficiale.
+<br> <br>
+- Una Condanna Bipartisan: <br>
+Contrariamente a quanto si potrebbe pensare, la reazione contro Snowden non è stata una questione di schieramento politico. Anche l'amministrazione democratica di Barack Obama mantenne una linea durissima: pur riconoscendo la necessità di riformare alcuni aspetti della sorveglianza, il Presidente condannò fermamente il metodo della fuga di notizie. Secondo la Casa Bianca, Snowden aveva messo in pericolo la sicurezza nazionale e avrebbe dovuto difendere le proprie azioni davanti a un tribunale americano, anziché cercare protezione in nazioni autoritarie.
+<br> <br>
+- L'Invasione della Vita Privata: <br>
+Sul fronte legale, il Datagate ha messo a nudo la sistematica violazione del IV Emendamento della Costituzione USA, che protegge i cittadini da perquisizioni e sequestri arbitrari. La sorveglianza indiscriminata aveva raggiunto livelli quasi surreali:
+NSA e intelligence britannica monitoravano persino mondi virtuali come World of Warcraft e Second Life, temendo che i terroristi usassero gli avatar per comunicare o trasferire fondi, dove però nei documenti trapelati, si trovano diversi dati dei giocatori innocenti persino nella loro sfera privata, fino ad arrivare anche nella sfera sessuale.
+Questi dettagli hanno dimostrato come il confine tra sicurezza pubblica e vita privata fosse stato cancellato, estendendosi persino agli spazi ludici e ricreativi.
+<br><br>
+- Dall'Attivismo alla Controversia Politica: <br>
+Negli ultimi anni, la posizione di Snowden si è fatta più ambigua. Sebbene sia nato come un "paladino della libertà", la sua prolungata permanenza a Mosca ha sollevato dubbi sulla sua reale indipendenza. I critici sottolineano i suoi silenzi sulle violazioni dei diritti umani commesse dal governo russo e la sua sottovalutazione dell'intelligence USA prima dell'invasione dell'Ucraina nel 2022, da lui liquidata inizialmente come "allarmismo". Questo legame con il Cremlino, dettato dal debito di gratitudine o dalle pressioni esterne, getta oggi un'ombra sulla sua figura di intellettuale libero.
+                </p>
+
+
+
+                <p id="text-3">
+        - L'eredità del datagate in America: <br>
+        Ancora ad oggi il Patriot Act non è sparito, ma si è evoluto nello USA Freedom Act, firmato il 2 giugno 2015 dall'allora presidente Barack Obama. Con questo cambiamento legislativo, la raccolta di massa dei metadati non è più gestita direttamente dal governo nei propri server; ora l'accesso ai dati deve essere richiesto alle compagnie di telecomunicazioni e tecnologiche (come AT&T, Verizon o T-Mobile) attraverso mandati specifici. Fondamentale in questo contesto è il ruolo delle FISA (Foreign Intelligence Surveillance Act), ovvero tribunali segreti incaricati di autorizzare le richieste di sorveglianza per motivi di sicurezza nazionale. Parallelamente, resta centrale la Sezione 702 della legge FISA, che permette alle agenzie di intelligence di monitorare le comunicazioni di stranieri all'estero, intercettando però spesso anche dati di cittadini che comunicano con loro. Oggi, questo sistema si è ulteriormente trasformato in una forma di controllo "privatizzata": lo Stato non ha più bisogno di intercettare tutto direttamente perché può rivolgersi ai data broker. Questi ultimi sono aziende private (come Acxiom o Epsilon) che raccolgono, aggregano e vendono legalmente enormi quantità di informazioni personali derivanti da app, social e acquisti, permettendo all'intelligence di acquistare pacchetti di dati dettagliati saltando spesso i passaggi burocratici dei mandati giudiziari. <br> <br>
+               - L'eredità del Datagate nella UE: <br>
+                L'eredità più concreta del Datagate in Europa è stata l'accelerazione verso il GDPR (General Data Protection Regulation), il regolamento europeo entrato in vigore nel 2018 per restituire ai cittadini il controllo sui propri dati personali. Sebbene questo rappresenti un passo avanti legislativo fondamentale, l'efficacia reale di tali misure rimane oggetto di aspre critiche.
+
+In primo luogo, si contesta la natura delle punizioni inflitte ai colossi tecnologici. Spesso le sanzioni pecuniarie, pur ammontando a centinaia di milioni di dollari, rappresentano solo una minima frazione del fatturato annuo di aziende come Google o Meta. Per queste multinazionali, tali multe vengono talvolta considerate come un semplice "costo d'impresa" piuttosto che un vero deterrente, permettendo loro di continuare a basare il proprio modello di business sull'estrazione e la monetizzazione dei dati.
+<br> <br> 
+- Il privacy washing: <br>
+In parallelo, il Datagate ha dato vita al fenomeno del "Privacy Washing". Similmente al greenwashing in ambito ambientale, molte aziende hanno iniziato a investire massicciamente in campagne di marketing per presentarsi come paladine della riservatezza. Tuttavia, dietro slogan accattivanti e interfacce semplificate, le architetture di raccolta dati rimangono spesso opache e pervasive. In questo modo, la privacy non viene trattata come un diritto fondamentale inviolabile, ma come un "prodotto" o una funzionalità premium da vendere agli utenti, creando una falsa percezione di sicurezza che maschera il persistente squilibrio di potere tra il singolo cittadino e le grandi infrastrutture digitali.
+
+                </p>
+
+            </section>
+
+        </div>
+
+
+
+        <!-- SIDEBAR CON IMMAGINI CHE CAMBIANO IN BASE AL TESTO -->
+
+        <div class="image-sidebar" id="image-sidebar">
+
+            <div class="sidebar-image">
+
+                <img id="img-1-src" src="https://wallpapers.com/images/hd/loading-640-x-1066-background-fbz6b4p4t5hjigif.jpg" alt="NSA Surveillance">
+
+                <div class="image-caption" id="caption-1">PRISM • Sorveglianza Globale</div>
+
+            </div>
+
+            <div class="sidebar-image">
+
+                <img id="img-2-src" src="https://wallpapers.com/images/hd/loading-640-x-1066-background-fbz6b4p4t5hjigif.jpg" alt="Edward Snowden">
+
+                <div class="image-caption" id="caption-2">Five Eyes • Alleanza Intelligence</div>
+
+            </div>
+
+            <div class="sidebar-image">
+
+                <img id="img-3-src" src="https://wallpapers.com/images/hd/loading-640-x-1066-background-fbz6b4p4t5hjigif.jpg" alt="GDPR Europe">
+
+                <div class="image-caption" id="caption-3">Patriot Act • 11 Settembre 2001</div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <footer>
+
+        © 2026 - ACCESSO RISERVATO - PROTOCOLLO V.O.I.D.
+
+    </footer>
+
+    <script>
+
+        // Configurazione immagini per ogni capitolo
+        const imagesConfig = {
+            1: {
+                images: [
+                    {
+                        src: "https://i.res.24o.it/images2010/Editrice/ILSOLE24ORE/ILSOLE24ORE/Online/Immagini/ArticleGallery/Notizie/2013/datagate/02_prism-map-672.jpg?uuid=af6c8ba8-3c20-11e3-babc-d519baf237fe",
+                    },
+                    {
+                        src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIcVY9Zk-HuMxGPgRpN0PLn9xrjIHPK-JbYQ&s",
+                    },
+                    {
+                        src: "https://upload.wikimedia.org/wikipedia/commons/3/3e/President_George_W._Bush_Signs_Patriot_Act.jpg",
+                    }
+                ]
+            },
+            2: {
+                images: [
+                    {
+                        src: "https://bilder.deutschlandfunk.de/FI/LE/_1/e0/FILE_1e0f44215e029ca9c8352dea1165b824/97197340-jpg-102-1280xauto.jpg",
+
+                    },
+                    {
+                        src: "https://www.zinnedproject.org/wp-content/uploads/2001/10/patriotact_protest.jpg",
+                    },
+                    {
+                        src: "https://www.cnet.com/a/img/resize/317bef858fb44ff7e3c994f11fc8546a6413437c/hub/2013/10/10/6e4c1dfc-6ddf-11e3-913e-14feb5ca9861/173104811.jpg?auto=webp&fit=crop&height=675&width=1200",
+                                        }
+                ]
+            },
+            3: {
+                images: [
+                    {
+                        src: "https://www.dgroove.it/wp-content/uploads/2018/03/shutterstock_790941460.jpg",
+                    },
+                    {
+                        src: "https://pmecdn.protonweb.com/image-transformation/?s=c&image=images%2Ff_auto%2Cq_auto%2Fv1707558996%2Fwp-pme%2Fprivacy-washing-year-in-review-blog%2Fprivacy-washing-year-in-review-blog.png%3F_i%3DAA",
+                    },
+                    {
+                        src: "https://dnewpydm90vfx.cloudfront.net/wp-content/uploads/2020/01/Individuazione-dei-dati-personali.jpg",
+                    }
+                ]
+            }
+        };
+
+        function updateImagesForChapter(chapterId) {
+            const config = imagesConfig[chapterId];
+            if (!config) return;
+
+            // Aggiungi animazione al container intero
+            const sidebar = document.getElementById('image-sidebar');
+            sidebar.style.animation = 'none';
+            sidebar.offsetHeight; // Forza il reflow
+            sidebar.style.animation = 'containerFade 0.5s ease forwards';
+
+            // Aggiorna ogni immagine e didascalia
+            for (let i = 1; i <= 3; i++) {
+                const imgElement = document.getElementById(`img-${i}-src`);
+                const captionElement = document.getElementById(`caption-${i}`);
+                
+                if (imgElement && captionElement && config.images[i-1]) {
+                    imgElement.src = config.images[i-1].src;
+                    captionElement.textContent = config.images[i-1].caption;
+                }
+            }
+        }
+
+        function showText(id) {
+            // Rimuovi classe active da tutti i titoli e testi
+            document.querySelectorAll('.selector-item').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.container p').forEach(el => el.classList.remove('active'));
+            
+            // Aggiungi active a quello cliccato
+            event.target.classList.add('active');
+            document.getElementById('text-' + id).classList.add('active');
+            
+            // Cambia il titolo dell'H3 in base alla scelta
+            const titles = ["L'Origine", "Le conseguenze", "L'eredità"];
+            document.getElementById('dynamic-title').innerText = titles[id-1];
+            
+            // Cambia le immagini in base al capitolo selezionato
+            updateImagesForChapter(id);
+        }
+
+        // Barra di progresso scroll (opzionale)
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            if(document.getElementById("scroll-progress")) {
+                document.getElementById("scroll-progress").style.width = scrolled + "%";
+            }
+        };
+
+        // Inizializza le immagini per il capitolo I all'avvio
+        updateImagesForChapter(1);
+    </script>
+
+</body>
+
+</html>

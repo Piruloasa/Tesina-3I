@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+
+<html lang="it">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>VOID - Horror Theme</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Crimson+Pro:wght@300;400&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+    <style>
+
+        :root {
+
+            --bg: #080808;
+
+            --card-bg: #0f0f0f;
+
+            --text: #c8c8c8;
+
+            --red: #cc0000;
+
+            --red-glow: rgba(204, 0, 0, 0.5);
+
+            --red-dim: #7a0000;
+
+            --white: #e8e8e8;
+
+            --mono: 'Share Tech Mono', Georgia;
+
+            --display: 'Georgia', Georgia;
+
+            --serif: 'Times New Roman', Georgia, serif;
+
+        }
+
+        /* RESET & BASE */
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+
+            background: var(--bg);
+
+            color: var(--text);
+
+            font-family: var(--serif);
+
+            line-height: 1.8;
+
+            overflow-x: hidden;
+
+        }
+
+        header {
+
+            min-height: 15vh;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: flex-start;
+
+            justify-content: center;
+
+            background: radial-gradient(ellipse at left, #1a0000 0%, #080808 75%);
+
+            position: relative;
+
+            border-bottom: 1px solid #1a1a1a;
+
+            padding: 20px 2%;
+
+        }
+
+        header h2 {
+
+            font-family: var(--display);
+
+            font-size: clamp(2rem, 6vw, 3rem);
+
+            color: var(--white);
+
+            letter-spacing: 6px;
+
+            text-shadow: 0 0 20px var(--red);
+
+            text-transform: uppercase;
+
+            line-height: 1;
+
+        }
+        header h2 {
+    /* ... i tuoi stili attuali ... */
+    animation: glitch 4s infinite;
+    position: relative;
+}
+
+@keyframes glitch {
+    0% { transform: translate(0); text-shadow: 0 0 20px var(--red); }
+    2% { transform: translate(-2px, 2px); text-shadow: 2px 0 var(--red), -2px 0 #fff; }
+    4% { transform: translate(2px, -2px); }
+    6% { transform: translate(0); }
+    100% { transform: translate(0); }
+}
+
+header .subtitle {
+    animation: fadeInSubtitle 2s ease-out forwards;
+}
+
+@keyframes fadeInSubtitle {
+    from { opacity: 0; letter-spacing: 15px; filter: blur(10px); }
+    to { opacity: 0.8; letter-spacing: 5px; filter: blur(0); }
+}
+
+        header .subtitle {
+
+            font-family: var(--mono);
+
+            color: var(--red);
+
+            letter-spacing: 5px;
+
+            font-size: 0.85rem;
+
+            margin-top: 3px;
+
+            opacity: 0.8;
+
+        }
+
+/* 1. Cambiamo il wrapper per impilare gli elementi verticalmente */
+.main-wrapper {
+    display: flex;
+    flex-direction: column; /* Cambia da riga a colonna */
+    max-width: 100%; /* Ridotto per una migliore leggibilità del testo lungo */
+    margin: 0 auto;
+    position: relative;
+    gap: 0px;
+    padding: 15px 10px;
+}
+
+/* 2. Il contenitore del testo ora occupa tutta la larghezza */
+.container {
+    width: 100%;
+}
+
+/* 3. La sidebar diventa una galleria orizzontale sotto il testo */
+.image-sidebar {
+    width: 100%;
+    position: static; /* Rimuoviamo lo sticky visto che ora è sotto */
+    flex-direction: row; /* Mettiamo le immagini una di fianco all'altra */
+    flex-wrap: wrap; /* Se lo schermo è stretto, vanno a capo */
+    gap: 10px;
+    justify-content: space-between;
+}
+
+/* 4. Regoliamo la larghezza delle singole immagini nella gallery */
+.sidebar-image {
+    flex: 1;
+    min-width: 100%; /* Dimensione minima per non farle diventare troppo piccole */
+    max-width: calc(33.33% - 20px); /* Tre immagini per riga */
+}
+
+        @keyframes containerFade {
+
+            from { 
+
+                opacity: 0.7; 
+
+                transform: translateX(10px);
+
+            }
+
+            to { 
+
+                opacity: 1; 
+
+                transform: translateX(0);
+
+            }
+
+        }
+
+        .sidebar-image {
+
+            width: 100%;
+
+            border: 1px solid #1e1e1e;
+
+            border-radius: 4px;
+
+            overflow: hidden;
+
+            background: #0a0a0a;
+
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        }
+
+        .sidebar-image img {
+
+            width: 100%;
+
+            height: 500px;
+
+            display: block;
+
+            filter: grayscale(30%);
+
+            transition: filter 0.3s ease;
+
+            object-fit: cover;
+
+        }
+
+        .sidebar-image:hover img {
+
+            filter: grayscale(0%);
+
+        }
+
+        .image-caption {
+
+            font-family: var(--mono);
+
+            font-size: 0.7rem;
+
+            color: #666;
+
+            text-align: center;
+
+            padding: 8px;
+
+            letter-spacing: 1px;
+
+        }
+
+       /* CONTAINER DELL'OCCHIO ANCORATO A DESTRA */
+#floating-eye {
+    position: absolute; /* Si ancora al primo genitore con position: relative (l'header) */
+    right: 4%;          /* Distanza dal bordo destro dell'header */
+    top: 50%;           /* Centratura verticale rispetto all'header */
+    transform: translateY(-50%); /* Correzione per centratura perfetta */
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+#floating-eye svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 0 6px var(--red));
+    transition: filter 0.3s;
+    animation: eyeIdleBlink 6s ease-in-out infinite;
+}
+
+#floating-eye:hover svg {
+    filter: drop-shadow(0 0 14px var(--red)) drop-shadow(0 0 28px var(--red));
+}
+
+/* RESTO DEL TUO DESIGN (Navigazione e Testi) */
+.selector-nav {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 0.5px;
+    flex-wrap: wrap;
+}
+
+.selector-item {
+    font-family: var(--display);
+    font-size: 1.5rem;
+    color: #444;
+    cursor: pointer;
+    transition: 0.3s;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.selector-item:hover, .selector-item.active {
+    color: var(--red);
+    text-shadow: 0 0 10px var(--red-glow);
+}
+
+section {
+    padding: 20px;
+    margin-bottom: 10px;
+    border-radius: 0 8px 8px 0;
+}
+
+h3 {
+    font-family: var(--display);
+    font-size: 1.4rem;
+    color: var(--white);
+    margin-bottom: 15px;
+    letter-spacing: 3px;
+    border-bottom: 1px solid #1e1e1e;
+    padding-bottom: 10px;
+    text-transform: uppercase;
+}
+
+p {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    color: var(--text);
+    display: none;
+}
+
+p.active {
+    display: block;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+    /* DESIGN FRECCIA VERSO IL BASSO */
+#header-arrow {
+    position: absolute;
+    right: 70px; 
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    transition: all 0.3s ease;
+}
+
+#header-arrow svg {
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: var(--red);
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    filter: drop-shadow(0 0 5px var(--red-glow));
+    /* Animazione cambiata per il movimento verticale */
+    animation: arrowBounce 2s infinite ease-in-out;
+}
+
+#header-arrow:hover svg {
+    filter: drop-shadow(0 0 12px var(--red)) drop-shadow(0 0 20px var(--red));
+    stroke: var(--white);
+}
+
+/* Nuova animazione: Rimbalzo verso il basso */
+@keyframes arrowBounce {
+    0%, 100% { transform: translateY(0); opacity: 0.6; }
+    50% { transform: translateY(10px); opacity: 1; }
+}
+
+/* Animazione di movimento inquieto */
+@keyframes arrowPulse {
+    0%, 100% { transform: translateX(0); opacity: 0.6; }
+    50% { transform: translateX(10px); opacity: 1; }
+    55% { transform: translateX(8px) skewX(-10deg); } /* Piccolo glitch */
+}
+
+/* DESIGN FRECCIA VERSO L'ALTO */
+#header-arrow-up {
+    position: absolute;
+    right: 120px; /* Posizionata a sinistra della freccia down (70px + 50px di scarto) */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    transition: all 0.3s ease;
+}
+
+#header-arrow-up svg {
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: var(--red);
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    filter: drop-shadow(0 0 5px var(--red-glow));
+    animation: arrowBounceUp 2s infinite ease-in-out;
+}
+
+#header-arrow-up:hover svg {
+    filter: drop-shadow(0 0 12px var(--red)) drop-shadow(0 0 20px var(--red));
+    stroke: var(--white);
+}
+
+/* Animazione: Rimbalzo verso l'alto */
+@keyframes arrowBounceUp {
+    0%, 100% { transform: translateY(0); opacity: 0.6; }
+    50% { transform: translateY(-10px); opacity: 1; }
+}
+
+/* RESTO DEL TUO DESIGN (Navigazione e Testi) */
+.selector-nav {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 0.5px;
+    flex-wrap: wrap;
+}
+
+/* Selettore dei capitoli: appaiono uno dopo l'altro */
+.selector-item {
+    font-family: var(--display);
+    font-size: 1.5rem;
+    color: #444;
+    cursor: pointer;
+    transition: 0.3s;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    
+    /* Animazione iniziale */
+    opacity: 0; 
+    animation: fadeIn 0.5s ease forwards;
+}
+
+/* Ritardi per i singoli item della nav (effetto cascata) */
+.selector-nav .selector-item:nth-child(1) { animation-delay: 0.2s; }
+.selector-nav .selector-item:nth-child(2) { animation-delay: 0.4s; }
+.selector-nav .selector-item:nth-child(3) { animation-delay: 0.6s; }
+
+/* Titolo Dinamico: animazione ogni volta che cambia */
+#dynamic-title {
+    font-family: var(--display);
+    font-size: 1.4rem;
+    color: var(--white);
+    margin-bottom: 15px;
+    letter-spacing: 3px;
+    border-bottom: 1px solid #1e1e1e;
+    padding-bottom: 10px;
+    text-transform: uppercase;
+    
+    /* Animazione */
+    opacity: 0;
+    animation: fadeIn 0.8s ease forwards;
+    animation-delay: 0.8s; /* Appare dopo i selettori */
+}
+.selector-item:hover, .selector-item.active {
+    color: var(--red);
+    text-shadow: 0 0 10px var(--red-glow);
+}
+
+        /* CARD/SEZIONI */
+
+        section {
+
+            padding: 20px;
+
+            margin-bottom: 1px;
+
+            border-radius: 0 8px 8px 0;
+
+        }
+
+        h3 {
+
+            font-family: var(--display);
+
+            font-size: 1.4rem;
+
+            color: var(--white);
+
+            margin-bottom: 15px;
+
+            letter-spacing: 3px;
+
+            border-bottom: 1px solid #1e1e1e;
+
+            padding-bottom: 10px;
+
+            text-transform: uppercase;
+
+        }
+
+        p {
+
+            margin-bottom: 10px;
+
+            font-size: 1.2rem;
+
+            color: var(--text);
+
+            display: none;
+
+        }
+
+        p.active {
+
+            display: block;
+
+            animation: fadeIn 0.5s ease forwards;
+
+        }
+
+        @keyframes fadeIn {
+
+            from { opacity: 0; transform: translateY(5px); }
+
+            to { opacity: 1; transform: translateY(0); }
+
+        }
+
+        /* FOOTER */
+
+        footer {
+
+            padding: 20px 2%;
+
+            text-align: left;
+
+            font-family: var(--mono);
+
+            font-size: 0.65rem;
+
+            color: #333;
+
+            letter-spacing: 3px;
+
+            border-top: 0.2px solid #111;
+
+        }
+
+        @media (max-width: 768px) {
+
+            header { padding-left: 2%; }
+
+            .main-wrapper {
+
+                flex-direction: column;
+
+                padding: 15px 2%;
+
+            }
+
+            .image-sidebar {
+
+                flex-direction: row;
+
+                flex-wrap: wrap;
+
+                position: static;
+
+                top: auto;
+
+                min-width: auto;
+
+            }
+
+            .sidebar-image {
+
+                flex: 1;
+
+                min-width: 150px;
+
+            }
+
+            .sidebar-image img {
+
+                height: 180px;
+
+            }
+
+        }
+    .header-link {
+    text-decoration: none;
+    display: inline-block;
+    width: 100%;
+}
+
+.header-link h2, .header-link .subtitle {
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.header-link h2:hover, .header-link .subtitle:hover {
+    opacity: 0.8;
+}
+
+.subtitle-link {
+    text-decoration: none;
+    display: inline-block;
+    width: 100%;
+}
+
+.subtitle-link .subtitle {
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.subtitle-link .subtitle:hover {
+    opacity: 0.8;
+}
+    </style>
+
+</head>
+
+<body>
+
+
+<header>
+
+        <h2>Le controversie dell'evoluzione</h2>
+        <div class="subtitle">Il timore delle sue conseguenze anche nell'epoca medievale</div>
+
+
+       <!-- ========== FLOATING EYE HOME BUTTON ========== -->
+<div id="floating-eye" title="Torna all'inizio">
+    <svg viewBox="0 30 100 1">
+        <a href="home.html">
+        <path d="M5 25 Q30 2 50 2 Q70 2 95 25 Q70 48 50 48 Q30 48 5 25 Z" fill="#080808" stroke="#5a0000" stroke-width="2.5"/>
+        <!-- Iride -->
+        <circle cx="50" cy="25" r="13" fill="#1a0000" stroke="#cc0000" stroke-width="1.5"/>
+        <!-- Pupilla -->
+        <circle cx="50" cy="25" r="7" fill="#cc0000"/>
+        <!-- Riflesso -->
+        <circle cx="55" cy="20" r="2.5" fill="rgba(255,255,255,0.15)"/>
+        <!-- Vene sottili -->
+        <line x1="15" y1="22" x2="35" y2="24" stroke="#3a0000" stroke-width="0.8" opacity="0.6"/>
+        <line x1="65" y1="24" x2="85" y2="21" stroke="#3a0000" stroke-width="0.8" opacity="0.6"/>
+       </a>
+    </svg>
+
+    <div id="header-arrow" title="Scorri verso il basso">
+    <svg viewBox="0 0 24 24">
+        <a href="C:\Users\Andrea Pace\OneDrive\Desktop\tesi8\2\2.htm">
+        <polyline points="6 9 12 15 18 9"></polyline>
+       <line x1="12" y1="3" x2="12" y2="10" opacity="0.5" stroke-width="2"></line>
+    </a>
+    </svg>
+    </div>
+    <div id="header-arrow-up" title="Torna su">
+    <svg viewBox="0 0 24 24">
+        <a href="">
+        <polyline points="18 15 12 9 6 15"></polyline>
+        <line x1="12" y1="21" x2="12" y2="14" opacity="0.5" stroke-width="2"></line>
+    </svg>
+</a>
+</div>
+</div>
+
+</div>
+
+</header>
+
+
+
+    <div class="main-wrapper">
+
+        <div class="container">
+
+            <section id="content-section">
+
+                <div class="selector-nav">
+
+                    <div class="selector-item active" onclick="showText(1)">Capitolo I</div>
+
+                    <div class="selector-item" onclick="showText(2)">Capitolo II</div>
+
+                </div>
+
+                <h3 id="dynamic-title">- Il canto XXVI canto della Divina Commedia:</h3>
+
+                <p id="text-1" class="active">
+                Nel Canto XXVI dell’Inferno, Dante incontra Ulisse nell’ottava bolgia, tra i consiglieri fraudolenti. L'eroe greco è avvolto in una fiamma biforcuta e racconta il suo ultimo, tragico viaggio. Ormai vecchio, spinto da un'irrefrenabile sete di conoscenza che non poteva essere appagata né dagli affetti familiari né dal trono di Itaca, Ulisse convince i suoi compagni a superare le Colonne d'Ercole, il limite estremo fissato da Ercole per impedire agli uomini di spingersi oltre. Con la celebre orazione — "Fatti non foste a viver come bruti, ma per seguir virtute e canoscenza" — egli sprona i suoi uomini al "folle volo" nell'Oceano ignoto. Tuttavia, giunti in vista della montagna del Purgatorio, una tempesta improvvisa travolge la nave per volontà divina: il desiderio di conoscenza di Ulisse, privo della guida della grazia e del rispetto dei limiti morali, lo conduce inevitabilmente alla rovina.
+                </p>
+                <p id="text-2">
+                 Il contrasto tra l’Ulisse assetato di sviluppo e un Dante profondamente preoccupato riflette una tensione ancora oggi attuale. Se Ulisse rappresenta l'impulso evolutivo cieco, che vede nell'ampliamento tecnologico un fine supremo, Dante incarna la preoccupazione etica e spirituale: il timore che il progresso, se slegato da una bussola morale, diventi un atto di superbia distruttivo. Questa "preoccupazione medievale" è oggi condivisa da una parte crescente della popolazione che, inorridita dalla velocità e dalla pervasività dello sviluppo tecnologico (dalla sorveglianza di massa alle AI belliche), cerca rifugio in un ritorno alla natura e nel decentramento urbano.
+<br> <br>
+Tuttavia, questo timore ha generato anche frange di radicalismo fanatico. Si assiste alla nascita di movimenti che idolatrano figure terroristiche come Ted Kaczynski (Unabomber), il quale sosteneva che la Rivoluzione Industriale non fosse un progresso con difetti gestionali, ma un errore totale da eradicare con la violenza. In questa visione estrema e nichilista, la tecnologia è vista come un cancro che ha privato l'uomo della sua libertà naturale, portando a una radicale opposizione all'evoluzione stessa. Questa polarizzazione ci riporta al dilemma originario: siamo ancora in grado di governare la nostra "nave" tecnologica entro i limiti dell'umanità, o siamo destinati, come Ulisse, a un naufragio globale causato dall'incapacità di porre un freno alla nostra stessa brama di controllo?
+                </p>
+
+            </section>
+
+        </div>
+
+        <!-- SIDEBAR CON IMMAGINI CHE CAMBIANO IN BASE AL TESTO -->
+
+        <div class="image-sidebar" id="image-sidebar">
+
+            <div class="sidebar-image">
+
+                <img id="img-1-src" src="https://wallpapers.com/images/hd/loading-640-x-1066-background-fbz6b4p4t5hjigif.jpg" alt="NSA Surveillance">
+
+                <div class="image-caption" id="caption-1">PRISM • Sorveglianza Globale</div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <footer>
+
+        © 2026 - ACCESSO RISERVATO - PROTOCOLLO V.O.I.D.
+
+    </footer>
+
+    <script>
+
+        // Configurazione immagini per ogni capitolo
+        const imagesConfig = {
+            1: {
+                images: [
+                    {
+                        src: "https://assets-zebra.zanichelli.it/3931688b-5d3e-4ca9-b2d6-11b8942c5dde-1280px-inf-26-priamo-della-quercia.jpg",
+                    },
+                ]
+            },
+            2: {
+                images: [
+                    {
+                        src: "https://www.poliorama.it/wp-content/uploads/2022/12/AdobeStock_482786114-scaled.jpeg",
+                    }    
+                ]
+            },
+        };
+
+        function updateImagesForChapter(chapterId) {
+            const config = imagesConfig[chapterId];
+            if (!config) return;
+
+            // Aggiungi animazione al container intero
+            const sidebar = document.getElementById('image-sidebar');
+            sidebar.style.animation = 'none';
+            sidebar.offsetHeight; // Forza il reflow
+            sidebar.style.animation = 'containerFade 0.5s ease forwards';
+
+            // Aggiorna ogni immagine e didascalia
+            for (let i = 1; i <= 2; i++) {
+                const imgElement = document.getElementById(`img-${i}-src`);
+                const captionElement = document.getElementById(`caption-${i}`);
+                
+                if (imgElement && captionElement && config.images[i-1]) {
+                    imgElement.src = config.images[i-1].src;
+                    captionElement.textContent = config.images[i-1].caption;
+                }
+            }
+        }
+
+        function showText(id) {
+            // Rimuovi classe active da tutti i titoli e testi
+            document.querySelectorAll('.selector-item').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.container p').forEach(el => el.classList.remove('active'));
+            
+            // Aggiungi active a quello cliccato
+            event.target.classList.add('active');
+            document.getElementById('text-' + id).classList.add('active');
+            
+            // Cambia il titolo dell'H3 in base alla scelta
+            const titles = ["Il XXVI canto della divina commedia", "Il dibattito sui rischi dell'evoluzione"];
+            document.getElementById('dynamic-title').innerText = titles[id-1];
+            
+            // Cambia le immagini in base al capitolo selezionato
+            updateImagesForChapter(id);
+        }
+
+        // Barra di progresso scroll (opzionale)
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            if(document.getElementById("scroll-progress")) {
+                document.getElementById("scroll-progress").style.width = scrolled + "%";
+            }
+        };
+
+        // Inizializza le immagini per il capitolo I all'avvio
+        updateImagesForChapter(1);
+    </script>
+
+</body>
+
+</html>
